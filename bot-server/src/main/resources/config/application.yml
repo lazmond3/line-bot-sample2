@@ -1,0 +1,6 @@
+spring.profiles.active: local
+spring.profiles.group:
+  local:
+    - common
+    - common-local
+    - bot-server-local
