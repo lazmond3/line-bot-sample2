@@ -7,7 +7,7 @@ terraform {
   }
   backend "s3" {
     bucket = "moikilo00-tfstate-bucket"
-    key = "line-bot-sample2/tfstate"
+    key    = "line-bot-sample2/tfstate"
     region = "ap-northeast-1"
   }
 }
