@@ -5,6 +5,11 @@ terraform {
       version = "~> 3.0"
     }
   }
+  backend "s3" {
+    bucket = "moikilo00-tfstate-bucket"
+    key    = "line-bot-sample2/dev.tfstate"
+    region = "ap-northeast-1"
+  }
 }
 
 provider "aws" {
@@ -12,12 +17,12 @@ provider "aws" {
 }
 
 module "ecr" {
-  source   = "./ecr"
+  source   = "../../ecr"
   ecr-name = var.ecr-name
 }
 
 module "route53" {
-  source      = "./route53"
+  source      = "../../route53"
   root-domain = var.root-domain
   app-domain  = var.app-domain
   lb_dns_name = module.alb.lb_dns_name
@@ -25,12 +30,12 @@ module "route53" {
 }
 
 module "vpc" {
-  source   = "./vpc"
+  source   = "../../vpc"
   app-name = var.app-name
 }
 
 module "alb" {
-  source            = "./alb"
+  source            = "../../alb"
   aws_lb_public_ids = module.vpc.aws_subnet_public_ips
   app-name          = var.app-name
   vpc-id            = module.vpc.vpc-id
@@ -38,11 +43,10 @@ module "alb" {
 }
 
 module "ecs" {
-  source   = "./ecs"
-  app-name = var.app-name
-  # aws_ecs_services_depends_on = [module.alb.aws_lb_listener_rule_resource]
+  source                       = "../../ecs"
+  app-name                     = var.app-name
   vpc-id                       = module.vpc.vpc-id
   ecs_load_balancer_target_arn = module.alb.aws_lb_target_arn
   ecs_subnets                  = module.vpc.aws_subnet_private_ips
-  # template-file-path = var.template-file-path
+  template-file-path           = var.template-file-path
 }
