@@ -6,4 +6,4 @@ ecr-name-sample-nginx   = "line-bot-sample-nginx"
 ecr-name2               = "line-bot-sample2"
 project-name-app        = "app"
 project-name-bot-server = "bot-server"
-template-file-path      = "../../ecs/nginx_template.json" # main.tf からの相対パス
+template-file-path      = "../../ecs/hello_spring.json" # main.tf からの相対パス
