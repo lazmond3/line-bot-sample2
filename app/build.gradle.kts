@@ -1,5 +1,6 @@
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter")
+    implementation("org.springframework.boot:spring-boot-starter-web")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     implementation("org.springframework.boot:spring-boot-starter-actuator")
     implementation("io.micrometer:micrometer-registry-prometheus")
@@ -7,7 +8,7 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-validation")
     implementation("io.github.microutils:kotlin-logging")
 
-    implementation(project(":common"))
+//    implementation(project(":common"))
 
     testImplementation("org.jeasy:easy-random-core")
     implementation("com.squareup.retrofit2:retrofit")

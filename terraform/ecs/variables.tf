@@ -30,3 +30,11 @@ variable "container_name" {
 variable "container_port" {
     default = "80"
 }
+
+variable container_repository {
+    type = string
+}
+
+variable container_tag {
+    type = string
+}
