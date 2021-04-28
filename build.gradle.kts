@@ -114,7 +114,7 @@ subprojects {
                 .readText().trim()
         val dockerImageTagLength = System.getenv("DOCKER_IMAGE_TAG_LENGTH") ?: 7
         val dockerRepositoryEcrBaseUrl = System.getenv("DOCKER_REPOSITORY_BASE_URL")
-            ?: throw Exception("DOCKER_REPOSITORY is not set")
+            ?: throw Exception("DOCKER_REPOSITORY_BASE_URL is not set")
         val gitRevision = ByteArrayOutputStream().use { os ->
             exec {
                 commandLine("git", "rev-parse", "--short=$dockerImageTagLength", "HEAD")
