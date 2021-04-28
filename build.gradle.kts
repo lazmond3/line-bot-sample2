@@ -6,14 +6,16 @@ repositories {
 }
 
 val javaVersion: String by project
+java.sourceCompatibility = JavaVersion.VERSION_11
 
 plugins {
     java
     `java-library`
     checkstyle
-    id("org.jetbrains.kotlin.jvm") version "1.5.0" apply false
-    id("org.jetbrains.kotlin.plugin.spring") version "1.5.0" apply false
-    id("org.jetbrains.kotlin.plugin.noarg") version "1.5.0"
+    kotlin("jvm") version "1.4.32"
+    kotlin("plugin.spring") version "1.4.32"
+    kotlin("plugin.noarg") version "1.4.32"
+
     id("org.springframework.boot") version "2.4.5" apply false
     id("io.spring.dependency-management") version "1.0.11.RELEASE" apply true
     id("io.gitlab.arturbosch.detekt") version "1.16.0"
@@ -55,11 +57,9 @@ subprojects {
 
     tasks.withType<KotlinCompile> {
         kotlinOptions {
-            jvmTarget = "1.8"
-            javaParameters = true
-            freeCompilerArgs = listOf(
-                "-Xjsr305=strict"
-            )
+//            javaParameters = true
+            freeCompilerArgs = listOf("-Xjsr305=strict")
+            jvmTarget = javaVersion
         }
     }
 
@@ -94,6 +94,7 @@ subprojects {
 
             dependency("com.linecorp.bot:line-bot-spring-boot:4.3.0")
             dependency("io.github.microutils:kotlin-logging:1.12.5")
+            dependency("org.slf4j:slf4j-simple:1.7.29") // to stdout
             dependency("com.fasterxml.jackson.module:jackson-module-kotlin:2.11.4")
             dependency("io.springfox:springfox-boot-starter:3.0.0")
             dependency("io.mockk:mockk:1.10.0")
@@ -103,6 +104,7 @@ subprojects {
     }
 
     dependencies {
+        implementation("io.github.microutils:kotlin-logging")
         implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
         implementation(kotlin("stdlib-jdk8"))
         implementation(kotlin("reflect"))
