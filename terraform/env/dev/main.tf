@@ -16,10 +16,10 @@ provider "aws" {
   region = "ap-northeast-1"
 }
 
-module "ecr" {
-  source   = "../../ecr"
-  ecr-name = var.ecr-name
-}
+# module "ecr-sample-nginx" {
+#   source   = "../../ecr"
+#   ecr-name = var.ecr-name-sample-nginx
+# }
 
 module "ecr-app" {
   source   = "../../ecr"

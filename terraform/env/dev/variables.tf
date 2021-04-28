@@ -1,7 +1,7 @@
 variable "app-name" {
   type = string
 }
-variable "ecr-name" {
+variable "ecr-name-sample-nginx" {
   type = string
 }
 variable "ecr-name2" {
