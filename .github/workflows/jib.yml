@@ -2,8 +2,10 @@ name: "jib"
 
 on:
   push:
-    branches:
-      - master
+    paths:
+      - app/**
+      - common/**
+# TODO: bot-server の分も追加する
 
 jobs:
   jib:
@@ -12,7 +14,9 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-
+      - name: Check on master merged
+        if: github.ref != 'refs/heads/master' || github.event_name != 'push'
+        run: exit 1
       - name: Configure AWS credentials from Test account
         uses: aws-actions/configure-aws-credentials@v1
         with:
