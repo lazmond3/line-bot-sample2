@@ -1,4 +1,5 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+import java.io.ByteArrayOutputStream
 
 repositories {
     mavenCentral()
@@ -102,6 +103,60 @@ subprojects {
             dependency("org.jeasy:easy-random-core:4.2.0")
         }
     }
+
+    jib {
+        val versionNumber: String =
+            file(
+                rootDir.absolutePath +
+                        File.separatorChar +
+                        "VERSION.txt"
+            )
+                .readText().trim()
+        val dockerImageTagLength = System.getenv("DOCKER_IMAGE_TAG_LENGTH") ?: 7
+        val dockerRepositoryEcrBaseUrl = System.getenv("DOCKER_REPOSITORY_BASE_URL")
+            ?: throw Exception("DOCKER_REPOSITORY is not set")
+        val gitRevision = ByteArrayOutputStream().use { os ->
+            exec {
+                commandLine("git", "rev-parse", "--short=$dockerImageTagLength", "HEAD")
+                workingDir = rootDir
+                standardOutput = os
+            }
+            os.toString().trim()
+        }
+        val tag = "$versionNumber-$gitRevision"
+        from {
+            image = "adoptopenjdk/openjdk11:latest"
+        }
+        to {
+            image =
+                "${dockerRepositoryEcrBaseUrl}/line-bot-sample2-${project.name}"
+            tags = mutableSetOf("latest", gitRevision)
+        }
+        container {
+            creationTime = "USE_CURRENT_TIMESTAMP"
+            labels = mapOf("maintainer" to "ryokaz <moikilo00@gmail.com>")
+            val serverPort = "8080"
+            user = "www:www"
+            val userHome = "/home/www"
+            ports = listOf(
+                serverPort,
+                "8081"
+            )
+            jvmFlags = listOf(
+                "-server",
+                "-XX:+UseG1GC",
+                "-XX:+ScavengeBeforeFullGC",
+                "-XX:+ExitOnOutOfMemoryError",
+                "-Xlog:gc=info,vmoperation" +
+                        "=info:$userHome/logs/jvm/jvm.log:time,uptime,level,tags:filesize=100m,filecount=1",
+                "-Dfile.encoding=UTF-8",
+                "-Duser.timezone=Asia/Tokyo",
+                "-XX:MaxMetaspaceSize=200M",
+                "-Dserver.port=$serverPort"
+            )
+        }
+    }
+
 
     dependencies {
         implementation("io.github.microutils:kotlin-logging")
