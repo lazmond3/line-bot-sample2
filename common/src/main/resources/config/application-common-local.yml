@@ -1,14 +1,10 @@
-logging:
-  level:
-    root: INFO
-
 spring:
   flyway:
     enabled: true
   datasource:
-    url: "${JDBC_URL}"
+    url: ${JDBC_URL}
     hikari:
       username: ${JDBC_USER}
       password: ${JDBC_PASSWORD}
-      jdbc-url: "${JDBC_URL}"
+      jdbc-url: ${JDBC_URL}
       driver-class-name: com.mysql.cj.jdbc.Driver
