@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - master
-  pull_request:
 
 jobs:
   jib:
@@ -44,12 +43,10 @@ jobs:
       - name: jib with Gradle (app)
         run: ./gradlew :app:jib
         env:
-          JIB_TAG: test
           DOCKER_REPOSITORY_BASE_URL: ${{ secrets.DOCKER_REPOSITORY_BASE_URL }}
       - name: jib with Gradle (bot-server)
         run: ./gradlew :bot-server:jib
         env:
-          JIB_TAG: test
           DOCKER_REPOSITORY_BASE_URL: ${{ secrets.DOCKER_REPOSITORY_BASE_URL }}
       - name: Cleanup Gradle Cache
         # Remove some files from the Gradle cache, so they aren't cached by GitHub Actions.
