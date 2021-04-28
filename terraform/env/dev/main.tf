@@ -21,9 +21,13 @@ module "ecr" {
   ecr-name = var.ecr-name
 }
 
-module "ecr-line-bot-sample2" {
+module "ecr-line-bot-sample2-app" {
   source   = "../../ecr"
-  ecr-name = var.ecr-name-line-bot-sample2
+  ecr-name = var.ecr-name-line-bot-sample2-app
+}
+module "ecr-line-bot-sample2-bot-server" {
+  source   = "../../ecr"
+  ecr-name = var.ecr-name-line-bot-sample2-bot-server
 }
 
 module "route53" {
