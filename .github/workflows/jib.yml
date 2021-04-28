@@ -1,4 +1,4 @@
-name: "Terraform"
+name: "jib"
 
 on:
   push:
@@ -6,14 +6,9 @@ on:
       - master
   pull_request:
 
-defaults:
-  run:
-    working-directory: terraform/env/dev
-
-
 jobs:
-  terraform:
-    name: "Terraform"
+  jib:
+    name: "jib"
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
