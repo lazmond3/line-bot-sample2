@@ -21,6 +21,11 @@ module "ecr" {
   ecr-name = var.ecr-name
 }
 
+module "ecr-line-bot-sample2" {
+  source   = "../../ecr"
+  ecr-name = var.ecr-name-line-bot-sample2
+}
+
 module "route53" {
   source      = "../../route53"
   root-domain = var.root-domain
