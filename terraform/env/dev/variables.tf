@@ -4,6 +4,15 @@ variable "app-name" {
 variable "ecr-name" {
   type = string
 }
+variable "ecr-name2" {
+  type = string
+}
+variable "project-name-app" {
+  type = string
+}
+variable "project-name-bot-server" {
+  type = string
+}
 variable "root-domain" {
   type = string
 }
