@@ -1,0 +1,18 @@
+spring:
+  datasource.initialization-mode: NEVER
+  data.redis.repositories.enabled: false
+  flyway:
+    enabled: false
+    out-of-order: true
+    baseline-on-migrate: true
+    locations: classpath:db/migration
+
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
+    cache-enabled: false
+    local-cache-scope: statement
+    default-fetch-size: 10000
+  type-aliases-package: ryokaz.linebot.sample2.common.typehandler
+  type-handlers-package: ryokaz.linebot.sample2.common.typehandler
+  mapper-locations: mybatis/mapper/*.xml

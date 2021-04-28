@@ -1,0 +1,15 @@
+HELP.md
+.gradle
+build/
+!gradle/wrapper/gradle-wrapper.jar
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+.classpath
+.project
+.settings
+
+### IntelliJ IDEA ###
+.idea
+.gradle
+.idea
