@@ -125,16 +125,16 @@ subprojects {
         }
         val tag = "$versionNumber-$gitRevision"
         val jibTag = System.getenv("JIB_TAG")
+        val tagsVariable = mutableSetOf("latest", tag)
 
         from {
             image = "adoptopenjdk/openjdk11:latest"
         }
         to {
-            tags = mutableSetOf("latest", tag)
             if (!jibTag.isNullOrBlank()) {
-//                tags.add(jibTag) // これ動かないんだっけ？
-                tags = mutableSetOf(jibTag)
+               tagsVariable.add(jibTag) // これ動かないんだっけ？
             }
+            tags = tagsVariable
 
             image =
                 "${dockerRepositoryEcrBaseUrl}/line-bot-sample2-${project.name}"
