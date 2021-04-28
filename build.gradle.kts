@@ -124,13 +124,20 @@ subprojects {
             os.toString().trim()
         }
         val tag = "$versionNumber-$gitRevision"
+        val jibTag = System.getenv("JIB_TAG")
+
         from {
             image = "adoptopenjdk/openjdk11:latest"
         }
         to {
+            tags = mutableSetOf("latest", tag)
+            if (!jibTag.isNullOrBlank()) {
+//                tags.add(jibTag) // これ動かないんだっけ？
+                tags = mutableSetOf(jibTag)
+            }
+
             image =
                 "${dockerRepositoryEcrBaseUrl}/line-bot-sample2-${project.name}"
-            tags = mutableSetOf("latest", gitRevision)
         }
         container {
             creationTime = "USE_CURRENT_TIMESTAMP"
