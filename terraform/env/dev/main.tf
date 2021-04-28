@@ -58,4 +58,6 @@ module "ecs" {
   ecs_load_balancer_target_arn = module.alb.aws_lb_target_arn
   ecs_subnets                  = module.vpc.aws_subnet_private_ips
   template-file-path           = var.template-file-path
+  container_repository         = var.container_repository
+  container_tag                = var.container_tag
 }

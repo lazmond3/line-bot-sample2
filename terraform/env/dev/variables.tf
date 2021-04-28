@@ -22,3 +22,11 @@ variable "app-domain" {
 variable "template-file-path" {
   type = string
 }
+
+variable "container_repository" {
+  type = string
+}
+
+variable "container_tag" {
+  type = string
+}

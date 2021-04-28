@@ -1,7 +1,7 @@
 [
   {
     "name": "linebot-sample2-hello-app",
-    "image": "554506578892.dkr.ecr.ap-northeast-1.amazonaws.com/line-bot-sample2-app:0.0.1-75b03b2",
+    "image": "${container_repository}:${container_tag}",
     "portMappings": [
       {
         "containerPort": 8080,
