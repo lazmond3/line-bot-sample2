@@ -44,6 +44,7 @@ module "alb" {
   app-name          = var.app-name
   vpc-id            = module.vpc.vpc-id
   cert-arn          = module.route53.cert-arn
+  ecs-id            = module.ecs.ecs-id
 }
 
 module "ecs" {

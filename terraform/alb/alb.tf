@@ -26,6 +26,13 @@ resource "aws_lb_target_group" "main" {
   }
 }
 
+resource "aws_lb_target_group_attachment" "main" {
+  target_group_arn = aws_lb_target_group.main.arn
+  target_id        = var.ecs-id
+  port             = 8080
+}
+
+
 # 単純なリダイレクトなので、 LISTENER_RULE が不要
 resource "aws_lb_listener" "http_to_https" {
   port     = "80"
