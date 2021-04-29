@@ -60,4 +60,5 @@ module "ecs" {
   template-file-path           = var.template-file-path
   container_repository         = var.container_repository
   container_tag                = var.container_tag
+  aws_ecr_repository_name      = module.ecr-app.aws_ecr_repository_name
 }
