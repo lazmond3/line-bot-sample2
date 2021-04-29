@@ -15,14 +15,14 @@ resource "aws_lb_target_group" "main" {
 
   # ALBからECSタスクのコンテナへトラフィックを振り分ける設定
   # application load balancer ? 
-  port        = 80
+  port        = 8080
   protocol    = "HTTP"
   target_type = "ip"
 
   # コンテナへの死活監視設定
   health_check {
-    port = 80
-    path = "/"
+    port = 8080
+    path = "/hello"
   }
 }
 
