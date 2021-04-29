@@ -16,9 +16,9 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      # - name: Check on master merged
-      #   if: github.ref != 'refs/heads/master' || github.event_name != 'push'
-      #   run: exit 1
+      - name: Check on master merged
+        if: github.ref != 'refs/heads/master' || github.event_name != 'push'
+        run: exit 0 # 何もせず正常終了する
       - name: Configure AWS credentials from Test account
         uses: aws-actions/configure-aws-credentials@v1
         with:
