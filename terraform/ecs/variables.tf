@@ -1,6 +1,5 @@
 variable "template-file-path" {
   type = string
-  default = "./ecs/nginx_template.json"
 }
 
 variable "app-name" {
@@ -24,11 +23,10 @@ variable "ecs_subnets" {
     type = list(string) # aws_subnet.privates.*.id
 }
 variable "container_name" {
-    default = "nginx"
     type = string
 }
 variable "container_port" {
-    default = "80"
+    type = string
 }
 
 variable container_repository {
