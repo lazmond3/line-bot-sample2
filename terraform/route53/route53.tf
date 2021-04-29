@@ -46,15 +46,15 @@ resource "aws_acm_certificate_validation" "main" {
   validation_record_fqdns = [for record in aws_route53_record.validations : record.fqdn]
 }
 
-resource "aws_route53_record" "main" {
-  type = "A"
+# resource "aws_route53_record" "main" {
+#   type = "A"
 
-  name    = var.app-domain
-  zone_id = data.aws_route53_zone.main.id
+#   name    = var.app-domain
+#   zone_id = data.aws_route53_zone.main.id
 
-  alias {
-    name                   = var.lb_dns_name
-    zone_id                = var.lb_zone_id
-    evaluate_target_health = true
-  }
-}
+#   alias {
+#     name                   = var.lb_dns_name
+#     zone_id                = var.lb_zone_id
+#     evaluate_target_health = true
+#   }
+# }

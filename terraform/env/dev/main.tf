@@ -34,8 +34,8 @@ module "route53" {
   source      = "../../route53"
   root-domain = var.root-domain
   app-domain  = var.app-domain
-  lb_dns_name = module.alb.lb_dns_name
-  lb_zone_id  = module.alb.lb_zone_id
+  # lb_dns_name = module.alb.lb_dns_name
+  # lb_zone_id  = module.alb.lb_zone_id
 }
 
 module "vpc" {
@@ -43,19 +43,19 @@ module "vpc" {
   app-name = var.app-name
 }
 
-module "alb" {
-  source            = "../../alb"
-  aws_lb_public_ids = module.vpc.aws_subnet_public_ips
-  app-name          = var.app-name
-  vpc-id            = module.vpc.vpc-id
-  cert-arn          = module.route53.cert-arn
-}
+# module "alb" {
+#   source            = "../../alb"
+#   aws_lb_public_ids = module.vpc.aws_subnet_public_ips
+#   app-name          = var.app-name
+#   vpc-id            = module.vpc.vpc-id
+#   cert-arn          = module.route53.cert-arn
+# }
 
-module "ecs" {
-  source                       = "../../ecs"
-  app-name                     = var.app-name
-  vpc-id                       = module.vpc.vpc-id
-  ecs_load_balancer_target_arn = module.alb.aws_lb_target_arn
-  ecs_subnets                  = module.vpc.aws_subnet_private_ips
-  template-file-path           = var.template-file-path
-}
+# module "ecs" {
+#   source                       = "../../ecs"
+#   app-name                     = var.app-name
+#   vpc-id                       = module.vpc.vpc-id
+#   ecs_load_balancer_target_arn = module.alb.aws_lb_target_arn
+#   ecs_subnets                  = module.vpc.aws_subnet_private_ips
+#   template-file-path           = var.template-file-path
+# }
