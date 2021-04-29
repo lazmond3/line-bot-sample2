@@ -143,8 +143,8 @@ subprojects {
             creationTime = "USE_CURRENT_TIMESTAMP"
             labels = mapOf("maintainer" to "ryokaz <moikilo00@gmail.com>")
             val serverPort = "8080"
-            user = "www:www"
-            val userHome = "/home/www"
+            // user = "www:www"
+            // val userHome = "/home/www"
             ports = listOf(
                 serverPort,
                 "8081"
@@ -154,8 +154,8 @@ subprojects {
                 "-XX:+UseG1GC",
                 "-XX:+ScavengeBeforeFullGC",
                 "-XX:+ExitOnOutOfMemoryError",
-                "-Xlog:gc=info,vmoperation" +
-                        "=info:$userHome/logs/jvm/jvm.log:time,uptime,level,tags:filesize=100m,filecount=1",
+                // "-Xlog:gc=info,vmoperation" +
+                //         "=info:$userHome/logs/jvm/jvm.log:time,uptime,level,tags:filesize=100m,filecount=1",
                 "-Dfile.encoding=UTF-8",
                 "-Duser.timezone=Asia/Tokyo",
                 "-XX:MaxMetaspaceSize=200M",
