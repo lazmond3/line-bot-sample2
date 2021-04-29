@@ -38,3 +38,7 @@ variable container_repository {
 variable container_tag {
     type = string
 }
+
+variable aws_ecr_repository_name {
+    type = string
+}

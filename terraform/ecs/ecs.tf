@@ -24,6 +24,9 @@ resource "aws_ecs_task_definition" "main" {
   # Fargateを使用する場合は"awsvpc"決め打ち
   network_mode = "awsvpc"
 
+  # ECR にアクセスするための IAM Role
+  execution_role_arn = aws_iam_role.ecs_task_execution_role.arn
+
   # 起動するコンテナの定義
   # 「nginxを起動し、80ポートを開放する」設定を記述。
   container_definitions = data.template_file.container_definitions.rendered
