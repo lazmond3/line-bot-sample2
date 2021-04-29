@@ -11,3 +11,6 @@ variable "vpc-id" {
 variable "cert-arn" {
   type = string
 }
+variable ecs-id {
+  type = string
+}
