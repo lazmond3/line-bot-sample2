@@ -1,6 +1,6 @@
 [
   {
-    "name": "linebot-sample2-hello-app",
+    "name": "${container_name}",
     "image": "${container_repository}:${container_tag}",
     "portMappings": [
       {
