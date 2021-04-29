@@ -16,11 +16,6 @@ provider "aws" {
   region = "ap-northeast-1"
 }
 
-# module "ecr-sample-nginx" {
-#   source   = "../../ecr"
-#   ecr-name = var.ecr-name-sample-nginx
-# }
-
 module "ecr-app" {
   source   = "../../ecr"
   ecr-name = "${var.ecr-name2}-${var.project-name-app}"
@@ -60,5 +55,7 @@ module "ecs" {
   template-file-path           = var.template-file-path
   container_repository         = var.container_repository
   container_tag                = var.container_tag
+  container_name               = var.container_name
+  container_port               = var.container_port
   aws_ecr_repository_name      = module.ecr-app.aws_ecr_repository_name
 }
