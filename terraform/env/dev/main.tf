@@ -63,5 +63,5 @@ module "ecs" {
   container_name               = var.container_name
   container_port               = var.container_port
   aws_ecr_repository_name      = module.ecr-app.aws_ecr_repository_name
-  route_table_ids_for_private = module.vpc.route_table_ids_for_private
+  route_table_ids_for_private  = module.vpc.route_table_ids_for_private
 }
