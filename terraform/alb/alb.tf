@@ -5,7 +5,7 @@
 # https://www.terraform.io/docs/providers/aws/r/lb_target_group.html
 # ALB で定義できるのは、ターゲットグループの定義 すなわちVPCのこと。(forward) 先に指定できる)
 # 逆にCloudFront などはredirectじゃないと指定できない気がするけど、その場合画像ファイルとかうまく表示できなくなるのでは？
-resource  "aws_lb_target_group" "main" {
+resource "aws_lb_target_group" "main" {
   name = "${var.app-name}-target-group"
 
   # ターゲットグループを作成するVPC
