@@ -54,27 +54,27 @@ resource "aws_internet_gateway" "main" {
 }
 
 # NAT ゲートウェイ 用 Elastic IP付与 (public に NAT ゲートウェイを接続)
-resource "aws_eip" "nat" {
-  count = length(var.public_subnet_cidrs)
+# resource "aws_eip" "nat" {
+#   count = length(var.public_subnet_cidrs)
 
-  vpc = true
+#   vpc = true
 
-  tags = {
-    Name = "${var.app-name}-natgw-${count.index}"
-  }
-}
+#   tags = {
+#     Name = "${var.app-name}-natgw-${count.index}"
+#   }
+# }
 
-# NAT ゲートウェイ
-resource "aws_nat_gateway" "this" {
-  count = length(var.public_subnet_cidrs)
+# # NAT ゲートウェイ
+# resource "aws_nat_gateway" "this" {
+#   count = length(var.public_subnet_cidrs)
 
-  subnet_id     = element(aws_subnet.publics.*.id, count.index)
-  allocation_id = element(aws_eip.nat.*.id, count.index) # ここで eip をつないでいる
+#   subnet_id     = element(aws_subnet.publics.*.id, count.index)
+#   allocation_id = element(aws_eip.nat.*.id, count.index) # ここで eip をつないでいる
 
-  tags = {
-    Name = "${var.app-name}-${count.index}"
-  }
-}
+#   tags = {
+#     Name = "${var.app-name}-${count.index}"
+#   }
+# }
 
 # ルートテーブル
 # Route Table
