@@ -19,8 +19,11 @@ provider "aws" {
 module "ecr-app" {
   source   = "../../ecr"
   ecr-name = "${var.ecr-name2}-${var.project-name-app}"
-
+  vpc-id = module.vpc.vpc-id
+  aws_subnet_private_ips = module.vpc.aws_subnet_private_ips
+  vpc_cidr = module.vpc.vpc_cidr
 }
+
 # module "ecr-bot-server" {
 #   source   = "../../ecr"
 #   ecr-name = "${var.ecr-name2}-${var.project-name-bot-server}"
