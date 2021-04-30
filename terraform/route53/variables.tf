@@ -8,8 +8,8 @@ variable "root-domain" {
 }
 
 variable "lb_dns_name" {
-    type = string # aws_lb.this.dns_name
+  type = string # aws_lb.this.dns_name
 }
 variable "lb_zone_id" {
-    type = string # aws_lb.this.zone_id
+  type = string # aws_lb.this.zone_id
 }
