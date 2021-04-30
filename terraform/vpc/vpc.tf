@@ -135,14 +135,15 @@ resource "aws_route_table" "privates" {
   }
 }
 
-resource "aws_route" "privates" {
-  count = length(var.private_subnet_cidrs)
+# NATをオフにする
+# resource "aws_route" "privates" {
+#   count = length(var.private_subnet_cidrs)
 
-  destination_cidr_block = "0.0.0.0/0"
+#   destination_cidr_block = "0.0.0.0/0"
 
-  route_table_id = element(aws_route_table.privates.*.id, count.index)
-  nat_gateway_id = element(aws_nat_gateway.this.*.id, count.index)
-}
+#   route_table_id = element(aws_route_table.privates.*.id, count.index)
+#   nat_gateway_id = element(aws_nat_gateway.this.*.id, count.index)
+# }
 
 resource "aws_route_table_association" "privates" {
   count = length(var.private_subnet_cidrs)
