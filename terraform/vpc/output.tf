@@ -7,3 +7,7 @@ output "aws_subnet_public_ips" {
 output "aws_subnet_private_ips" {
     value = aws_subnet.privates.*.id
 }
+
+output "vpc_cidr" {
+    value = var.vpc_cidr
+}
