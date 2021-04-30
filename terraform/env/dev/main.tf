@@ -19,11 +19,12 @@ provider "aws" {
 module "ecr-app" {
   source   = "../../ecr"
   ecr-name = "${var.ecr-name2}-${var.project-name-app}"
+
 }
-module "ecr-bot-server" {
-  source   = "../../ecr"
-  ecr-name = "${var.ecr-name2}-${var.project-name-bot-server}"
-}
+# module "ecr-bot-server" {
+#   source   = "../../ecr"
+#   ecr-name = "${var.ecr-name2}-${var.project-name-bot-server}"
+# }
 
 module "route53" {
   source      = "../../route53"
