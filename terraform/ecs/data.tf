@@ -1,8 +1,8 @@
 data "template_file" "container_definitions" {
-  template = "${file(var.template-file-path)}"
+  template = file(var.template-file-path)
   vars = {
-    container_name = var.container_name
+    container_name       = var.container_name
     container_repository = var.container_repository
-    container_tag = var.container_tag
+    container_tag        = var.container_tag
   }
 }

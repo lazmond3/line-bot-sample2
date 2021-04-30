@@ -1,3 +1,3 @@
-output ecs-id {
-    value = aws_ecs_service.main.id
+output "ecs-id" {
+  value = aws_ecs_service.main.id
 }
