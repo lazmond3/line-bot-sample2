@@ -20,3 +20,17 @@ resource "aws_vpc_endpoint" "ecr_api" {
   security_group_ids  = [aws_security_group.vpc_endpoint.id]
   private_dns_enabled = true
 }
+
+
+# s3 の vpc endpoint 作成
+resource "aws_vpc_endpoint" "s3" {
+  vpc_id            = var.vpc-id
+  service_name      = "com.amazonaws.ap-northeast-1.s3"
+  vpc_endpoint_type = "Gateway"
+}
+
+resource "aws_vpc_endpoint_route_table_association" "private_s3" {
+  count           = length(var.route_table_ids_for_private)
+  vpc_endpoint_id = aws_vpc_endpoint.s3.id
+  route_table_id  = var.route_table_ids_for_private[count.index]
+}

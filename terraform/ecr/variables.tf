@@ -10,3 +10,7 @@ variable "aws_subnet_private_ips" {
 variable "vpc_cidr" {
   type = string
 }
+
+variable "route_table_ids_for_private" {
+  type = list(string)
+}

@@ -11,3 +11,6 @@ output "aws_subnet_private_ips" {
 output "vpc_cidr" {
   value = var.vpc_cidr
 }
+output "route_table_ids_for_private" {
+  value = aws_route_table.privates.*.id
+}

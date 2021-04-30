@@ -17,11 +17,12 @@ provider "aws" {
 }
 
 module "ecr-app" {
-  source                 = "../../ecr"
-  ecr-name               = "${var.ecr-name2}-${var.project-name-app}"
-  vpc-id                 = module.vpc.vpc-id
-  aws_subnet_private_ips = module.vpc.aws_subnet_private_ips
-  vpc_cidr               = module.vpc.vpc_cidr
+  source                      = "../../ecr"
+  ecr-name                    = "${var.ecr-name2}-${var.project-name-app}"
+  vpc-id                      = module.vpc.vpc-id
+  aws_subnet_private_ips      = module.vpc.aws_subnet_private_ips
+  vpc_cidr                    = module.vpc.vpc_cidr
+  route_table_ids_for_private = module.vpc.route_table_ids_for_private
 }
 
 # module "ecr-bot-server" {
