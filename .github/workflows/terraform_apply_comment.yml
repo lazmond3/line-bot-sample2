@@ -1,25 +1,34 @@
-name: "terraform apply"
+name: "terraform apply pr comment"
 
-on: 
+on:
   issue_comment:
-    types: [created]
 
 defaults:
   run:
     working-directory: terraform/env/dev
 
-
 jobs:
   terraform_apply:
-    name: "terraform apply"
+    name: "terraform apply pr comment"
     runs-on: ubuntu-latest
-    if: ${{ github.event.issue.pull_request &&
-            startsWith(github.event.comment.body, '.deploy') }}
+    if: ${{ github.event.issue.pull_request != null && github.event.comment.body == '.deploy' }}
     steps:
-      - name: echo debug apply comment
-        run: echo body is${{ github.event.comment.body }}
-      - name: exit
-        run: exit 0
+      - name: Checkout
+        uses: actions/checkout@v2
+      - uses: actions/github-script@0.9.0
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const output = `debug output:
+            github.event.comment.body: \`${{ github.event.comment.body }}\`
+            github.event.issue.pull_request: \`${{ github.event.issue.pull_request }}\`
+            `
+            github.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: output
+            })
       - name: Checkout
         uses: actions/checkout@v2
 
