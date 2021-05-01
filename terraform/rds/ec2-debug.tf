@@ -32,50 +32,50 @@ resource "aws_network_interface" "private_interface_debug" {
   }
 }
 
-resource "aws_eip" "public_eip" {
-  count    = length(aws_instance.public)
-  vpc      = true
-  instance = aws_instance.public[count.index].id
-}
+# resource "aws_eip" "public_eip" {
+#   count    = length(aws_instance.public)
+#   vpc      = true
+#   instance = aws_instance.public[count.index].id
+# }
 
-resource "aws_instance" "public" {
-  #   ami           = "ami-005e54dee72cc1d00" # us-west-2
-  count         = length(var.aws_lb_public_ids)
-  ami           = data.aws_ami.ubuntu.id
-  instance_type = "t2.micro"
-  # vpc_id        = var.vpc_id
-  key_name = aws_key_pair.mmm2.key_name
+# resource "aws_instance" "public" {
+#   #   ami           = "ami-005e54dee72cc1d00" # us-west-2
+#   count         = length(var.aws_lb_public_ids)
+#   ami           = data.aws_ami.ubuntu.id
+#   instance_type = "t2.micro"
+#   # vpc_id        = var.vpc_id
+#   key_name = aws_key_pair.mmm2.key_name
 
-  credit_specification {
-    cpu_credits = "unlimited"
-  }
+#   credit_specification {
+#     cpu_credits = "unlimited"
+#   }
 
-  network_interface {
-    network_interface_id = aws_network_interface.public_interface_debug[count.index].id
-    device_index         = 0
-  }
-}
+#   network_interface {
+#     network_interface_id = aws_network_interface.public_interface_debug[count.index].id
+#     device_index         = 0
+#   }
+# }
 
-resource "aws_instance" "private" {
-  #   ami           = "ami-005e54dee72cc1d00" # us-west-2
-  count         = length(var.aws_lb_private_ids)
-  ami           = data.aws_ami.ubuntu.id
-  instance_type = "t2.micro"
-  key_name      = aws_key_pair.mmm2.key_name
-  # key_name = module.key_pair.key_pair_key_name
-  # vpc_id        = var.vpc_id
+# resource "aws_instance" "private" {
+#   #   ami           = "ami-005e54dee72cc1d00" # us-west-2
+#   count         = length(var.aws_lb_private_ids)
+#   ami           = data.aws_ami.ubuntu.id
+#   instance_type = "t2.micro"
+#   key_name      = aws_key_pair.mmm2.key_name
+#   # key_name = module.key_pair.key_pair_key_name
+#   # vpc_id        = var.vpc_id
 
-  credit_specification {
-    cpu_credits = "unlimited"
-  }
+#   credit_specification {
+#     cpu_credits = "unlimited"
+#   }
 
-  network_interface {
-    network_interface_id = aws_network_interface.private_interface_debug[count.index].id
-    device_index         = 0
-  }
-}
+#   network_interface {
+#     network_interface_id = aws_network_interface.private_interface_debug[count.index].id
+#     device_index         = 0
+#   }
+# }
 
-output "public_ips" {
-  # value = aws_instance.public.*.ip
-  value = [aws_eip.public_eip.*.public_ip]
-}
+# output "public_ips" {
+#   # value = aws_instance.public.*.ip
+#   value = [aws_eip.public_eip.*.public_ip]
+# }
