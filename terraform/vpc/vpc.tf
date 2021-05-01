@@ -1,4 +1,4 @@
-variable "app-name" {} # line-bot-sample
+variable "app_name" {} # line-bot-sample
 
 variable "azs" {
   type    = list(string)
@@ -25,7 +25,7 @@ resource "aws_vpc" "main" {
   enable_dns_support   = true
 
   tags = {
-    Name = var.app-name
+    Name = var.app_name
   }
 }
 
@@ -39,7 +39,7 @@ resource "aws_subnet" "publics" {
   cidr_block        = var.public_subnet_cidrs[count.index]
 
   tags = {
-    Name = "${var.app-name}-public-${count.index}"
+    Name = "${var.app_name}-public-${count.index}"
   }
 }
 
@@ -51,7 +51,7 @@ resource "aws_internet_gateway" "main" {
   vpc_id = aws_vpc.main.id
 
   tags = {
-    Name = var.app-name
+    Name = var.app_name
   }
 }
 
@@ -62,7 +62,7 @@ resource "aws_internet_gateway" "main" {
 #   vpc = true
 
 #   tags = {
-#     Name = "${var.app-name}-natgw-${count.index}"
+#     Name = "${var.app_name}-natgw-${count.index}"
 #   }
 # }
 
@@ -74,7 +74,7 @@ resource "aws_internet_gateway" "main" {
 #   allocation_id = element(aws_eip.nat.*.id, count.index) # ここで eip をつないでいる
 
 #   tags = {
-#     Name = "${var.app-name}-${count.index}"
+#     Name = "${var.app_name}-${count.index}"
 #   }
 # }
 
@@ -85,7 +85,7 @@ resource "aws_route_table" "public" {
   vpc_id = aws_vpc.main.id
 
   tags = {
-    Name = "${var.app-name}-public"
+    Name = "${var.app_name}-public"
   }
 }
 
@@ -123,7 +123,7 @@ resource "aws_subnet" "privates" {
   cidr_block        = var.private_subnet_cidrs[count.index]
 
   tags = {
-    Name = "${var.app-name}-private-${count.index}"
+    Name = "${var.app_name}-private-${count.index}"
   }
 }
 
@@ -133,7 +133,7 @@ resource "aws_route_table" "privates" {
   vpc_id = aws_vpc.main.id
 
   tags = {
-    Name = "${var.app-name}-private-${count.index}"
+    Name = "${var.app_name}-private-${count.index}"
   }
 }
 
