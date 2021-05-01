@@ -1,6 +1,7 @@
 name: "terraform apply"
 
-on: issue_comment
+on:
+  issue_comment:
 
 defaults:
   run:
