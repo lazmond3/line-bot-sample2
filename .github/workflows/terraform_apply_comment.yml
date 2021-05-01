@@ -20,6 +20,20 @@ jobs:
         run: echo "body is .. ${{ github.event.comment.body }}"
       - name: echo debug event is pull_request not null
         run: echo "github.event.issue.pull_request .. ${{ github.event.issue.pull_request }}"
+      - uses: actions/github-script@0.9.0
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const output = `debug output:
+            github.event.comment.body: \`${{ github.event.comment.body }}\`
+            github.event.issue.pull_request: \`${{ github.event.issue.pull_request }}\`
+            `
+            github.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: output
+            })
       - name: exit
         run: exit 0
       - name: Checkout
