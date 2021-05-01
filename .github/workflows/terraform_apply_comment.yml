@@ -83,7 +83,7 @@ jobs:
 
             \`\`\`${process.env.APPLY}\`\`\`
 
-            </details>
+            </details>`;
 
             github.issues.createComment({
               issue_number: context.issue.number,
