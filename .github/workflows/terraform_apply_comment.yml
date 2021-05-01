@@ -19,7 +19,8 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
-            const output = `debug output:
+            const output = `start terraform apply....
+            CI URL: ${process.env.GITHUB_SERVER_URL}/${process.env.GITHUB_REPOSITORY}/actions/runs/${process.env.GITHUB_RUN_ID}
             github.event.comment.body: \`${{ github.event.comment.body }}\`
             github.event.issue.pull_request: \`${{ github.event.issue.pull_request }}\`
             `
@@ -65,4 +66,28 @@ jobs:
         run: exit 1
 
       - name: Terraform Apply
+        id: apply
         run: terraform apply -auto-approve -var-file dev.tfvars
+        continue-on-error: true
+
+      - uses: actions/github-script@0.9.0
+        env:
+          APPLY: "terraform\n${{ steps.apply.outputs.stdout }}"
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const output = `#### .deploy の結果を表示する。
+            #### Terraform apply 📖\`${{ steps.apply.outcome }}\`
+
+            <details><summary>Show Apply Result</summary>
+
+            \`\`\`${process.env.APPLY}\`\`\`
+
+            </details>
+
+            github.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: output
+            })
