@@ -21,8 +21,6 @@ jobs:
           script: |
             const output = `start terraform apply....
             CI URL: ${process.env.GITHUB_SERVER_URL}/${process.env.GITHUB_REPOSITORY}/actions/runs/${process.env.GITHUB_RUN_ID}
-            github.event.comment.body: \`${{ github.event.comment.body }}\`
-            github.event.issue.pull_request: \`${{ github.event.issue.pull_request }}\`
             `
             github.issues.createComment({
               issue_number: context.issue.number,
