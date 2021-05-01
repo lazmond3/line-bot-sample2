@@ -1,16 +1,19 @@
 # https://yyh-gl.github.io/tech-blog/blog/terraform_ecs/
 # SSM Parameter data source
 # https://www.terraform.io/docs/providers/aws/d/ssm_parameter.html
-data "aws_ssm_parameter" "database_name" {
-  name = "MYSQL_DATABASE"
+resource "aws_ssm_parameter" "database_name" {
+  name  = "MYSQL_DATABASE"
+  value = "MYSQL_DATABASE"
 }
 
-data "aws_ssm_parameter" "database_user" {
-  name = "MYSQL_USER"
+resource "aws_ssm_parameter" "database_user" {
+  name  = "MYSQL_USER"
+  value = "MYSQL_USER"
 }
 
-data "aws_ssm_parameter" "database_password" {
-  name = "MYSQL_PASSWORD"
+resource "aws_ssm_parameter" "database_password" {
+  name  = "MYSQL_PASSWORD"
+  value = "MYSQL_PASSWORD"
 }
 
 # 【解説】locals は名前のとおりローカル変数です。
@@ -53,7 +56,7 @@ resource "aws_security_group_rule" "mysql" {
 resource "aws_db_subnet_group" "this" {
   name        = local.name
   description = local.name
-  subnet_ids = var.aws_lb_private_ids
+  subnet_ids  = var.aws_lb_private_ids
 }
 
 # RDS Cluster
