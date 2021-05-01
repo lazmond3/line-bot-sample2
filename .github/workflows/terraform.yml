@@ -3,7 +3,7 @@ name: "Terraform"
 on:
   push:
     branches:
-      - master
+      - no_such_branch
 #   pull_request:
 
 defaults:
