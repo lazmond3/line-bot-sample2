@@ -61,7 +61,8 @@ resource "aws_instance" "private" {
   count         = length(var.aws_lb_private_ids)
   ami           = data.aws_ami.ubuntu.id
   instance_type = "t2.micro"
-  key_name      = aws_key_pair.mmm.key_name
+  # key_name      = aws_key_pair.mmm.key_name
+  key_name = module.key_pair.key_pair_key_name
   # vpc_id        = var.vpc_id
 
   credit_specification {
