@@ -8,7 +8,7 @@ resource "aws_security_group" "ecs" {
   description = "handson ecs"
 
   # セキュリティグループを配置するVPC
-  vpc_id = var.vpc-id
+  vpc_id = var.vpc_id
 
   # セキュリティグループ内のリソースからインターネットへのアクセス許可設定
   # 今回の場合DockerHubへのPullに使用する。

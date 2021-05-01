@@ -17,12 +17,12 @@ provider "aws" {
 }
 
 module "ecr-app" {
-  source                      = "../../ecr"
-  ecr-name                    = "${var.ecr-name2}-${var.project-name-app}"
-  vpc-id                      = module.vpc.vpc-id
-  aws_subnet_private_ips      = module.vpc.aws_subnet_private_ips
-  vpc_cidr                    = module.vpc.vpc_cidr
-  route_table_ids_for_private = module.vpc.route_table_ids_for_private
+  source                          = "../../ecr"
+  ecr-name                        = "${var.ecr-name2}-${var.project-name-app}"
+  vpc_id                          = module.vpc.vpc_id
+  aws_subnet_private_ids          = module.vpc.aws_subnet_private_ids
+  vpc_cidr                        = module.vpc.vpc_cidr
+  aws_route_table_ids_for_private = module.vpc.aws_route_table_ids_for_private
 }
 
 # module "ecr-bot-server" {
@@ -31,11 +31,11 @@ module "ecr-app" {
 # }
 
 module "route53" {
-  source      = "../../route53"
-  root-domain = var.root-domain
-  app-domain  = var.app-domain
-  lb_dns_name = module.alb.lb_dns_name
-  lb_zone_id  = module.alb.lb_zone_id
+  source          = "../../route53"
+  root-domain     = var.root-domain
+  app-domain      = var.app-domain
+  aws_lb_dns_name = module.alb.aws_lb_dns_name
+  aws_lb_zone_id  = module.alb.aws_lb_zone_id
 }
 
 module "vpc" {
@@ -45,9 +45,9 @@ module "vpc" {
 
 module "alb" {
   source            = "../../alb"
-  aws_lb_public_ids = module.vpc.aws_subnet_public_ips
+  aws_lb_public_ids = module.vpc.aws_subnet_public_ids
   app-name          = var.app-name
-  vpc-id            = module.vpc.vpc-id
+  vpc_id            = module.vpc.vpc_id
   cert-arn          = module.route53.cert-arn
   ecs-id            = module.ecs.ecs-id
 }
@@ -55,9 +55,9 @@ module "alb" {
 module "ecs" {
   source                       = "../../ecs"
   app-name                     = var.app-name
-  vpc-id                       = module.vpc.vpc-id
-  ecs_load_balancer_target_arn = module.alb.aws_lb_target_arn
-  ecs_subnets                  = module.vpc.aws_subnet_private_ips
+  vpc_id                       = module.vpc.vpc_id
+  ecs_load_balancer_target_arn = module.alb.aws_lb_target_group_main_arn
+  ecs_subnets                  = module.vpc.aws_subnet_private_ids
   template-file-path           = var.template-file-path
   container_repository         = var.container_repository
   container_tag                = var.container_tag
