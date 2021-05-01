@@ -5,10 +5,11 @@ terraform {
       version = "~> 3.0"
     }
   }
-  backend "s3" {
-    bucket = "moikilo00-tfstate-bucket"
-    key    = "line-bot-sample2/dev.tfstate"
-    region = "ap-northeast-1"
+  backend "remote" {
+    organization = "line-bot-sample2"
+    workspaces {
+      name = "line-bot-sample2"
+    }
   }
 }
 
