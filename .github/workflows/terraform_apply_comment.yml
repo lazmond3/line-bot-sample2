@@ -1,7 +1,7 @@
 name: "terraform apply"
 
 on:
-  pull_request_review_comment:
+  issue_comment:
 
 defaults:
   run:
@@ -16,7 +16,9 @@ jobs:
     # if: (github.event.issue.pull_request != null)
     steps:
       - name: echo debug apply comment
-        run: echo body is ${{ github.event.comment.body }}
+        run: echo body is .. ${{ github.event.comment.body }}
+      - name: echo debug event is pull_request not null
+        run: echo github.event.issue.pull_request .. ${{ github.event.issue.pull_request }}
       - name: exit
         run: exit 0
       - name: Checkout
