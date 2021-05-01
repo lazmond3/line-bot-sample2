@@ -7,7 +7,7 @@ resource "aws_vpc_endpoint" "rds" {
   # プライベートサブネットに外部ヘ行く道がなくて困っているので、VPCエンドポイントを作成する？
   #Applicable for endpoints of type GatewayLoadBalancer and Interface.
 
-  subnet_ids = var.aws_lb_private_ids
+  subnet_ids          = var.aws_lb_private_ids
   security_group_ids  = [aws_security_group.vpc_endpoint_rds.id]
   private_dns_enabled = true
 }
