@@ -16,6 +16,8 @@ jobs:
     # if: ${{ github.event.issue.pull_request }}
     # if: (github.event.issue.pull_request != null)
     steps:
+      - name: Checkout
+        uses: actions/checkout@v2
       - name: echo debug apply comment
         run: echo "body is .. ${{ github.event.comment.body }}"
       - name: echo debug event is pull_request not null
