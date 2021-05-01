@@ -12,8 +12,7 @@ jobs:
   terraform_apply:
     name: "terraform apply"
     runs-on: ubuntu-latest
-    if: ${{ github.event.issue.pull_request &&
-            startsWith(github.event.comment.body, '.deploy') }}
+    if: ${{ github.event.issue.pull_request }}
     steps:
       - name: echo debug apply comment
         run: echo body is${{ github.event.comment.body }}
