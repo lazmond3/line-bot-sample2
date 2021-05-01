@@ -4,11 +4,11 @@
 # とおもったら、 ecs-service と、 aws_lb に対して制限している
 
 resource "aws_security_group" "ecs" {
-  name        = "${var.app-name}-ecs"
+  name        = "${var.app_name}-ecs"
   description = "handson ecs"
 
   # セキュリティグループを配置するVPC
-  vpc_id = var.vpc-id
+  vpc_id = var.vpc_id
 
   # セキュリティグループ内のリソースからインターネットへのアクセス許可設定
   # 今回の場合DockerHubへのPullに使用する。
@@ -20,7 +20,7 @@ resource "aws_security_group" "ecs" {
   }
 
   tags = {
-    Name = "${var.app-name}-ecs"
+    Name = "${var.app_name}-ecs"
   }
 
   # これは必要. これがないとサービス動かなくなる

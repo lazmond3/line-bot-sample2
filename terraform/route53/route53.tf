@@ -1,5 +1,5 @@
 data "aws_route53_zone" "main" {
-  name         = var.root-domain
+  name         = var.root_domain
   private_zone = false
 }
 
@@ -7,7 +7,7 @@ data "aws_route53_zone" "main" {
 # https://www.terraform.io/docs/providers/aws/r/acm_certificate.html
 # cloudfront で使いたい場合は、 us- に設定する。
 resource "aws_acm_certificate" "main" {
-  domain_name = var.app-domain
+  domain_name = var.app_domain
 
   validation_method = "DNS"
 
@@ -49,12 +49,12 @@ resource "aws_acm_certificate_validation" "main" {
 resource "aws_route53_record" "main" {
   type = "A"
 
-  name    = var.app-domain
+  name    = var.app_domain
   zone_id = data.aws_route53_zone.main.id
 
   alias {
-    name                   = var.lb_dns_name
-    zone_id                = var.lb_zone_id
+    name                   = var.aws_lb_dns_name
+    zone_id                = var.aws_lb_zone_id
     evaluate_target_health = true
   }
 }

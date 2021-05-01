@@ -1,15 +1,15 @@
-variable "template-file-path" {
+variable "template_file_path" {
   type = string
 }
 
-variable "app-name" {
+variable "app_name" {
   type = string
 }
 # variable "aws_ecs_services_depends_on" {    
 #     type = list(resource) # これできるのか
 #     # aws_lb_listener_rule.main 
 # }
-variable "vpc-id" {
+variable "vpc_id" {
   type = string
 }
 variable "ecs_desired_count" {
