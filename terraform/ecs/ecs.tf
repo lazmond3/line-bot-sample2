@@ -4,13 +4,13 @@
 # - service 
 # から構成される
 resource "aws_ecs_cluster" "main" {
-  name = var.app-name
+  name = var.app_name
 }
 
 # Task Definition
 # https://www.terraform.io/docs/providers/aws/r/ecs_task_definition.html
 resource "aws_ecs_task_definition" "main" {
-  family = "${var.app-name}-task-definition"
+  family = "${var.app_name}-task-definition"
 
   # データプレーンの選択
   requires_compatibilities = ["FARGATE"]
@@ -40,7 +40,7 @@ resource "aws_ecs_task_definition" "main" {
 # ECS Service
 # https://www.terraform.io/docs/providers/aws/r/ecs_service.html
 resource "aws_ecs_service" "main" {
-  name = var.app-name
+  name = var.app_name
 
   # 依存関係の記述。
   # "aws_lb_listener_rule.main" リソースの作成が完了するのを待ってから当該リソースの作成を開始する。

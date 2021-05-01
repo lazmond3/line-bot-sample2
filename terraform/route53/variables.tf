@@ -1,8 +1,8 @@
-variable "app-domain" {
+variable "app_domain" {
   description = "これから取得したいドメイン名"
   type        = string
 }
-variable "root-domain" {
+variable "root_domain" {
   description = "Route 53 で管理しているルートドメイン名 (wildcard)"
   type        = string
 }

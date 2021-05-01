@@ -6,7 +6,7 @@
 # ALB で定義できるのは、ターゲットグループの定義 すなわちVPCのこと。(forward) 先に指定できる)
 # 逆にCloudFront などはredirectじゃないと指定できない気がするけど、その場合画像ファイルとかうまく表示できなくなるのでは？
 resource "aws_lb_target_group" "main" {
-  name = "${var.app-name}-target-group"
+  name = "${var.app_name}-target-group"
 
   # ターゲットグループを作成するVPC
   # これ雑じゃない？ どのサブネットに渡すとか
@@ -60,7 +60,7 @@ resource "aws_lb_listener" "https" {
 
 resource "aws_lb" "this" {
   load_balancer_type = "application"
-  name               = var.app-name
+  name               = var.app_name
 
   security_groups = [aws_security_group.alb.id]
   subnets         = var.aws_lb_public_ids

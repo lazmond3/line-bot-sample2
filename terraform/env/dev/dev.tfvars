@@ -1,12 +1,12 @@
-app-name    = "line-bot-sample2"
-app-domain  = "line-bot-sample2.moikilo00.net"
-root-domain = "moikilo00.net"
+app_name    = "line-bot-sample2"
+app_domain  = "line-bot-sample2.moikilo00.net"
+root_domain = "moikilo00.net"
 
-ecr-name-sample-nginx   = "line-bot-sample-nginx"
-ecr-name2               = "line-bot-sample2"
-project-name-app        = "app"
-project-name-bot-server = "bot-server"
-template-file-path      = "../../ecs/hello_spring.json.tpl" # main.tf からの相対パス
+ecr_name_sample_nginx   = "line-bot-sample-nginx"
+ecr_name2               = "line-bot-sample2"
+project_name_app        = "app"
+project_name_bot_server = "bot-server"
+template_file_path      = "../../ecs/hello_spring.json.tpl" # main.tf からの相対パス
 container_repository    = "554506578892.dkr.ecr.ap-northeast-1.amazonaws.com/line-bot-sample2-app"
 container_tag           = "0.0.1-5191cf8"
 container_name          = "line-bot-sample2-app" # でいいのか？
