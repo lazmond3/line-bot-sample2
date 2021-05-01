@@ -65,7 +65,7 @@ jobs:
 
       - name: Terraform Apply
         id: apply
-        run: terraform apply -auto-approve -var-file dev.tfvars
+        run: terraform apply -no-color -auto-approve -var-file dev.tfvars
         continue-on-error: true
 
       - uses: actions/github-script@0.9.0
