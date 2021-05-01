@@ -4,7 +4,7 @@ variable "aws_lb_public_ids" {
 variable "app-name" {
   type = string # line-bot-sample2
 }
-variable "vpc-id" {
+variable "vpc_id" {
   type = string # aws_vpc.main.id
 }
 

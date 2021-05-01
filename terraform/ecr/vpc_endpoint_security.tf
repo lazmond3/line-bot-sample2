@@ -1,6 +1,6 @@
 resource "aws_security_group" "vpc_endpoint" {
   name   = "vpc_endpoint_sg"
-  vpc_id = var.vpc-id
+  vpc_id = var.vpc_id
 
   ingress {
     from_port   = 443
