@@ -43,7 +43,7 @@ resource "aws_instance" "public" {
   count         = length(var.aws_lb_public_ids)
   ami           = data.aws_ami.ubuntu.id
   instance_type = "t2.micro"
-  vpc_id        = var.vpc-id
+  # vpc_id        = var.vpc-id
 
   credit_specification {
     cpu_credits = "unlimited"
@@ -60,7 +60,7 @@ resource "aws_instance" "private" {
   count         = length(var.aws_lb_private_ids)
   ami           = data.aws_ami.ubuntu.id
   instance_type = "t2.micro"
-  vpc_id        = var.vpc-id
+  # vpc_id        = var.vpc-id
 
   credit_specification {
     cpu_credits = "unlimited"
