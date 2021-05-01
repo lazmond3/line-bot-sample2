@@ -3,7 +3,7 @@ variable "vpc_id" {
   type = string
 }
 variable "vpc_cidr" {
-    type = string
+  type = string
 }
 variable "aws_subnet_public_ids" {
   type = list(string)
