@@ -45,7 +45,7 @@ module "vpc" {
 
 module "alb" {
   source            = "../../alb"
-  aws_lb_public_ids = module.vpc.aws_subnet_public_ips
+  aws_lb_public_ids = module.vpc.aws_subnet_public_ids
   app-name          = var.app-name
   vpc_id            = module.vpc.vpc_id
   cert-arn          = module.route53.cert-arn
