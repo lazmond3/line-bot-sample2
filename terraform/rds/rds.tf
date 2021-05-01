@@ -3,16 +3,19 @@
 # https://www.terraform.io/docs/providers/aws/d/ssm_parameter.html
 resource "aws_ssm_parameter" "database_name" {
   name  = "MYSQL_DATABASE"
+  type  = "String"
   value = "MYSQL_DATABASE"
 }
 
 resource "aws_ssm_parameter" "database_user" {
   name  = "MYSQL_USER"
+  type  = "String"
   value = "MYSQL_USER"
 }
 
 resource "aws_ssm_parameter" "database_password" {
   name  = "MYSQL_PASSWORD"
+  type  = "String"
   value = "MYSQL_PASSWORD"
 }
 
@@ -70,9 +73,9 @@ resource "aws_rds_cluster" "this" {
   engine = "aurora-mysql"
   port   = "3306"
 
-  database_name   = data.aws_ssm_parameter.database_name.value
-  master_username = data.aws_ssm_parameter.database_user.value
-  master_password = data.aws_ssm_parameter.database_password.value
+  database_name   = aws_ssm_parameter.database_name.value
+  master_username = aws_ssm_parameter.database_user.value
+  master_password = aws_ssm_parameter.database_password.value
 
   # RDSインスタンス削除時のスナップショットの取得強制を無効化
   skip_final_snapshot = true
