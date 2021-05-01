@@ -17,7 +17,7 @@ data "aws_ssm_parameter" "database_password" {
 # variables だと `${}` 展開できないのでこちらを使用しました。
 # 他にやり方があれば教えてほしいです。
 locals {
-  name = "${var.prefix}-rds-mysql"
+  name = "linebot-sample2-rds-mysql"
 }
 
 resource "aws_security_group" "this" {
