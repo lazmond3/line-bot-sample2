@@ -2,6 +2,8 @@ name: "terraform apply"
 
 on: 
   issue_comment:
+    types:
+      - created
 
 defaults:
   run:
@@ -12,7 +14,8 @@ jobs:
   terraform_apply:
     name: "terraform apply"
     runs-on: ubuntu-latest
-    if: ${{ github.event.issue.pull_request }}
+    # if: ${{ github.event.issue.pull_request }}
+    if: (github.event.issue.pull_request != null)
     steps:
       - name: echo debug apply comment
         run: echo body is${{ github.event.comment.body }}
