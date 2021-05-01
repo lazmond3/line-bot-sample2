@@ -4,7 +4,7 @@ variable "ecr-name" {
 variable "vpc_id" {
   type = string
 }
-variable "aws_subnet_private_ips" {
+variable "aws_subnet_private_ids" {
   type = list(string)
 }
 variable "vpc_cidr" {

@@ -20,7 +20,7 @@ module "ecr-app" {
   source                      = "../../ecr"
   ecr-name                    = "${var.ecr-name2}-${var.project-name-app}"
   vpc_id                      = module.vpc.vpc_id
-  aws_subnet_private_ips      = module.vpc.aws_subnet_private_ips
+  aws_subnet_private_ids      = module.vpc.aws_subnet_private_ids
   vpc_cidr                    = module.vpc.vpc_cidr
   aws_route_table_ids_for_private = module.vpc.aws_route_table_ids_for_private
 }
@@ -57,7 +57,7 @@ module "ecs" {
   app-name                     = var.app-name
   vpc_id                       = module.vpc.vpc_id
   ecs_load_balancer_target_arn = module.alb.aws_lb_target_group_main_arn
-  ecs_subnets                  = module.vpc.aws_subnet_private_ips
+  ecs_subnets                  = module.vpc.aws_subnet_private_ids
   template-file-path           = var.template-file-path
   container_repository         = var.container_repository
   container_tag                = var.container_tag
