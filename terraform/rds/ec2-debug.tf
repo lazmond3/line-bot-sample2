@@ -44,7 +44,7 @@ resource "aws_instance" "public" {
   ami           = data.aws_ami.ubuntu.id
   instance_type = "t2.micro"
   # vpc_id        = var.vpc_id
-  key_name = aws_key_pair.mmm.key_name
+  key_name = aws_key_pair.mmm2.key_name
 
   credit_specification {
     cpu_credits = "unlimited"
