@@ -1,8 +1,8 @@
-variable "template-file-path" {
+variable "template_file_path" {
   type = string
 }
 
-variable "app-name" {
+variable "app_name" {
   type = string
 }
 # variable "aws_ecs_services_depends_on" {    

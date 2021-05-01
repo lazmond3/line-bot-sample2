@@ -1,25 +1,25 @@
-variable "app-name" {
+variable "app_name" {
   type = string
 }
-variable "ecr-name-sample-nginx" {
+variable "ecr_name_sample_nginx" {
   type = string
 }
-variable "ecr-name2" {
+variable "ecr_name2" {
   type = string
 }
-variable "project-name-app" {
+variable "project_name_app" {
   type = string
 }
-variable "project-name-bot-server" {
+variable "project_name_bot_server" {
   type = string
 }
-variable "root-domain" {
+variable "root_domain" {
   type = string
 }
-variable "app-domain" {
+variable "app_domain" {
   type = string
 }
-variable "template-file-path" {
+variable "template_file_path" {
   type = string
 }
 
