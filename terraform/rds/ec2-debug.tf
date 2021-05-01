@@ -44,6 +44,7 @@ resource "aws_instance" "public" {
   ami           = data.aws_ami.ubuntu.id
   instance_type = "t2.micro"
   # vpc_id        = var.vpc_id
+  key_name = aws_key_pair.mmm.key_name
 
   credit_specification {
     cpu_credits = "unlimited"
@@ -60,6 +61,7 @@ resource "aws_instance" "private" {
   count         = length(var.aws_lb_private_ids)
   ami           = data.aws_ami.ubuntu.id
   instance_type = "t2.micro"
+  key_name      = aws_key_pair.mmm.key_name
   # vpc_id        = var.vpc_id
 
   credit_specification {
@@ -72,7 +74,7 @@ resource "aws_instance" "private" {
   }
 }
 
-# output "public_ips" {
-#   # value = aws_instance.public.*.ip
-#   value = aws_eip.public_eip.public.*.public_ip
-# }
+output "public_ips" {
+  # value = aws_instance.public.*.ip
+  value = [aws_eip.public_eip.*.public_ip]
+}
