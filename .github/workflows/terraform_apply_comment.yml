@@ -1,9 +1,6 @@
 name: "terraform apply"
 
-on: 
-  issue_comment:
-    types:
-      - created
+on: issue_comment
 
 defaults:
   run:
@@ -15,10 +12,10 @@ jobs:
     name: "terraform apply"
     runs-on: ubuntu-latest
     # if: ${{ github.event.issue.pull_request }}
-    if: (github.event.issue.pull_request != null)
+    # if: (github.event.issue.pull_request != null)
     steps:
       - name: echo debug apply comment
-        run: echo body is${{ github.event.comment.body }}
+        run: echo body is ${{ github.event.comment.body }}
       - name: exit
         run: exit 0
       - name: Checkout
