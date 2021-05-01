@@ -30,7 +30,7 @@ resource "aws_vpc_endpoint" "s3" {
 }
 
 resource "aws_vpc_endpoint_route_table_association" "private_s3" {
-  count           = length(var.route_table_ids_for_private)
+  count           = length(var.aws_route_table_ids_for_private)
   vpc_endpoint_id = aws_vpc_endpoint.s3.id
-  route_table_id  = var.route_table_ids_for_private[count.index]
+  route_table_id  = var.aws_route_table_ids_for_private[count.index]
 }

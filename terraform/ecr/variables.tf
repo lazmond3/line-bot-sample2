@@ -11,6 +11,6 @@ variable "vpc_cidr" {
   type = string
 }
 
-variable "route_table_ids_for_private" {
+variable "aws_route_table_ids_for_private" {
   type = list(string)
 }

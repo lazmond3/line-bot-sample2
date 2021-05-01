@@ -22,7 +22,7 @@ module "ecr-app" {
   vpc_id                      = module.vpc.vpc_id
   aws_subnet_private_ips      = module.vpc.aws_subnet_private_ips
   vpc_cidr                    = module.vpc.vpc_cidr
-  route_table_ids_for_private = module.vpc.route_table_ids_for_private
+  aws_route_table_ids_for_private = module.vpc.aws_route_table_ids_for_private
 }
 
 # module "ecr-bot-server" {
