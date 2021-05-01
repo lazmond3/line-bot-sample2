@@ -53,8 +53,8 @@ resource "aws_route53_record" "main" {
   zone_id = data.aws_route53_zone.main.id
 
   alias {
-    name                   = var.lb_dns_name
-    zone_id                = var.lb_zone_id
+    name                   = var.aws_lb_dns_name
+    zone_id                = var.aws_lb_zone_id
     evaluate_target_health = true
   }
 }

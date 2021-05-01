@@ -34,8 +34,8 @@ module "route53" {
   source      = "../../route53"
   root-domain = var.root-domain
   app-domain  = var.app-domain
-  lb_dns_name = module.alb.lb_dns_name
-  lb_zone_id  = module.alb.lb_zone_id
+  aws_lb_dns_name = module.alb.aws_lb_dns_name
+  aws_lb_zone_id  = module.alb.aws_lb_zone_id
 }
 
 module "vpc" {
@@ -56,7 +56,7 @@ module "ecs" {
   source                       = "../../ecs"
   app-name                     = var.app-name
   vpc_id                       = module.vpc.vpc_id
-  ecs_load_balancer_target_arn = module.alb.aws_lb_target_arn
+  ecs_load_balancer_target_arn = module.alb.aws_lb_target_group_main_arn
   ecs_subnets                  = module.vpc.aws_subnet_private_ips
   template-file-path           = var.template-file-path
   container_repository         = var.container_repository
