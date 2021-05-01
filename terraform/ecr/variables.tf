@@ -1,7 +1,7 @@
 variable "ecr-name" {
   type = string
 }
-variable "vpc-id" {
+variable "vpc_id" {
   type = string
 }
 variable "aws_subnet_private_ips" {

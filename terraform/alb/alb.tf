@@ -11,7 +11,7 @@ resource "aws_lb_target_group" "main" {
   # ターゲットグループを作成するVPC
   # これ雑じゃない？ どのサブネットに渡すとか
   # どの VPC に渡すか、だけでいいのか？
-  vpc_id = var.vpc-id
+  vpc_id = var.vpc_id
 
   # ALBからECSタスクのコンテナへトラフィックを振り分ける設定
   # application load balancer ? 

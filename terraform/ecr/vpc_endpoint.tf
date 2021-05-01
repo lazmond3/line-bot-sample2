@@ -1,5 +1,5 @@
 resource "aws_vpc_endpoint" "ecr_dkr" {
-  vpc_id            = var.vpc-id
+  vpc_id            = var.vpc_id
   service_name      = "com.amazonaws.ap-northeast-1.ecr.dkr"
   vpc_endpoint_type = "Interface"
   #The ID of one or more subnets in which to create a network interface for the endpoint.
@@ -13,7 +13,7 @@ resource "aws_vpc_endpoint" "ecr_dkr" {
 }
 
 resource "aws_vpc_endpoint" "ecr_api" {
-  vpc_id              = var.vpc-id
+  vpc_id              = var.vpc_id
   service_name        = "com.amazonaws.ap-northeast-1.ecr.api"
   vpc_endpoint_type   = "Interface"
   subnet_ids          = var.aws_subnet_private_ips
@@ -24,7 +24,7 @@ resource "aws_vpc_endpoint" "ecr_api" {
 
 # s3 の vpc endpoint 作成
 resource "aws_vpc_endpoint" "s3" {
-  vpc_id            = var.vpc-id
+  vpc_id            = var.vpc_id
   service_name      = "com.amazonaws.ap-northeast-1.s3"
   vpc_endpoint_type = "Gateway"
 }

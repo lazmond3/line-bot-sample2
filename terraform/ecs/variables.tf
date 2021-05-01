@@ -9,7 +9,7 @@ variable "app-name" {
 #     type = list(resource) # これできるのか
 #     # aws_lb_listener_rule.main 
 # }
-variable "vpc-id" {
+variable "vpc_id" {
   type = string
 }
 variable "ecs_desired_count" {

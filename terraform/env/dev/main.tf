@@ -19,7 +19,7 @@ provider "aws" {
 module "ecr-app" {
   source                      = "../../ecr"
   ecr-name                    = "${var.ecr-name2}-${var.project-name-app}"
-  vpc-id                      = module.vpc.vpc-id
+  vpc_id                      = module.vpc.vpc_id
   aws_subnet_private_ips      = module.vpc.aws_subnet_private_ips
   vpc_cidr                    = module.vpc.vpc_cidr
   route_table_ids_for_private = module.vpc.route_table_ids_for_private
@@ -47,7 +47,7 @@ module "alb" {
   source            = "../../alb"
   aws_lb_public_ids = module.vpc.aws_subnet_public_ips
   app-name          = var.app-name
-  vpc-id            = module.vpc.vpc-id
+  vpc_id            = module.vpc.vpc_id
   cert-arn          = module.route53.cert-arn
   ecs-id            = module.ecs.ecs-id
 }
@@ -55,7 +55,7 @@ module "alb" {
 module "ecs" {
   source                       = "../../ecs"
   app-name                     = var.app-name
-  vpc-id                       = module.vpc.vpc-id
+  vpc_id                       = module.vpc.vpc_id
   ecs_load_balancer_target_arn = module.alb.aws_lb_target_arn
   ecs_subnets                  = module.vpc.aws_subnet_private_ips
   template-file-path           = var.template-file-path
