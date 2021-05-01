@@ -53,11 +53,11 @@ resource "aws_security_group_rule" "mysql" {
 resource "aws_db_subnet_group" "this" {
   name        = local.name
   description = local.name
-  subnet_ids = [
-    "${aws_subnet.private_1a.id}",
-    "${aws_subnet.private_1c.id}",
-    "${aws_subnet.private_1d.id}",
-  ]
+  subnet_ids = var.aws_lb_private_ids
+  #   "${aws_subnet.private_1a.id}",
+  #   "${aws_subnet.private_1c.id}",
+  #   "${aws_subnet.private_1d.id}",
+  # ]
 }
 
 # RDS Cluster
