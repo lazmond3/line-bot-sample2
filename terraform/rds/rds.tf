@@ -25,7 +25,7 @@ resource "aws_security_group" "this" {
   description = local.name
 
   # vpc_id = aws_vpc.main.id
-  vpc_id = var.vpc-id
+  vpc_id = var.vpc_id
 
   egress {
     from_port   = 0
@@ -54,10 +54,6 @@ resource "aws_db_subnet_group" "this" {
   name        = local.name
   description = local.name
   subnet_ids = var.aws_lb_private_ids
-  #   "${aws_subnet.private_1a.id}",
-  #   "${aws_subnet.private_1c.id}",
-  #   "${aws_subnet.private_1d.id}",
-  # ]
 }
 
 # RDS Cluster

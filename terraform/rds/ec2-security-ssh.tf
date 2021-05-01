@@ -1,6 +1,6 @@
 resource "aws_security_group" "ec2_public_bastian" {
   name   = "ec2_bastian"
-  vpc_id = var.vpc-id
+  vpc_id = var.vpc_id
 
   ingress {
     from_port   = 22
@@ -19,7 +19,7 @@ resource "aws_security_group" "ec2_public_bastian" {
 
 resource "aws_security_group" "mysql_to_private" {
   name   = "mysql_to_private"
-  vpc_id = var.vpc-id
+  vpc_id = var.vpc_id
 
   egress {
     from_port   = 3306

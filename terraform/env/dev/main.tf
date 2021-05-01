@@ -69,7 +69,7 @@ module "ecs" {
 # rds をやってみる
 module "rds" {
   source             = "../../rds"
-  vpc-id             = module.vpc.vpc-id
+  vpc_id             = module.vpc.vpc_id
   aws_lb_public_ids  = module.vpc.aws_subnet_public_ips
   aws_lb_private_ids = module.vpc.aws_subnet_private_ips
   vpc_cidr           = module.vpc.vpc_cidr

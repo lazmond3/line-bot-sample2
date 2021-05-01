@@ -1,5 +1,5 @@
 resource "aws_vpc_endpoint" "rds" {
-  vpc_id            = var.vpc-id
+  vpc_id            = var.vpc_id
   service_name      = "com.amazonaws.ap-northeast-1.rds "
   vpc_endpoint_type = "Interface"
   #The ID of one or more subnets in which to create a network interface for the endpoint.
