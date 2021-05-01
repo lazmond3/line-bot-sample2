@@ -74,5 +74,5 @@ resource "aws_instance" "private" {
 
 output "public_ips" {
   # value = aws_instance.public.*.ip
-  value = public_eip.public.*.public_ip
+  value = aws_eip.public_eip.public.*.public_ip
 }
