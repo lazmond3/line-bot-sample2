@@ -15,7 +15,7 @@ resource "aws_nat_gateway" "this" {
   allocation_id = aws_eip.nat.id # ここで eip をつないでいる
 
   tags = {
-    Name = "line-bot-nat-gateway"
+    Name = "line-bot-nat-gateway-diff"
   }
 }
 
