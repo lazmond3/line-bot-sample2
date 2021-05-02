@@ -71,6 +71,7 @@ jobs:
       - uses: actions/github-script@0.9.0
         env:
           APPLY: "terraform\n${{ steps.apply.outputs.stdout }}"
+          APPLY_ERROR: terraform\n${{ steps.apply.outputs.stderr }}
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
@@ -79,7 +80,9 @@ jobs:
 
             <details><summary>Show Apply Result</summary>
 
-            \`\`\`${process.env.APPLY}\`\`\`
+            \`\`\`${process.env.APPLY}
+            ${process.env.APPLY_ERROR}
+            \`\`\`
 
             </details>`;
 
