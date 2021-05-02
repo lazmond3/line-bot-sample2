@@ -55,6 +55,9 @@ resource "aws_instance" "public" {
     network_interface_id = aws_network_interface.public_interface_debug[count.index].id
     device_index         = 0
   }
+  tags {
+    Name = "LINE-public-bastiation-${count.index}"
+  }
 }
 
 resource "aws_instance" "private" {
@@ -71,6 +74,10 @@ resource "aws_instance" "private" {
   network_interface {
     network_interface_id = aws_network_interface.private_interface_debug[count.index].id
     device_index         = 0
+  }
+
+  tags {
+    Name = "LINE-private-${count.index}"
   }
 }
 
