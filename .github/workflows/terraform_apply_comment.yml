@@ -70,7 +70,7 @@ jobs:
 
       - uses: actions/github-script@0.9.0
         env:
-          APPLY: "terraform\n${{ steps.apply.outputs.stdout }}"
+          APPLY: ${{ steps.apply.outputs.stdout }}
           APPLY_ERROR: ${{ steps.apply.outputs.stderr }}
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
@@ -80,17 +80,21 @@ jobs:
 
             <details><summary>Show Apply Result</summary>
 
-            \`\`\`${process.env.APPLY}\`\`\`
+            \`\`\`terraform
+            ${process.env.APPLY}
+            \`\`\`
 
             </details>
             
-            ${ process.env.APPLY_ERROR &&  `
-            <details><summary>Error</summary>
+            ${ process.env.APPLY_ERROR &&
+              `<details><summary>Error</summary>
 
-            \`\`\`${process.env.APPLY_ERROR}\`\`\`
+              \`\`\`terraform
+              ${process.env.APPLY_ERROR}
+              \`\`\`
 
-            </details>
-            ` }`;
+              </details>
+            `}`;
 
             github.issues.createComment({
               issue_number: context.issue.number,
