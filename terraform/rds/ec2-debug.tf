@@ -41,7 +41,7 @@ resource "aws_eip" "public_eip" {
 }
 
 resource "aws_instance" "public" {
-  ami = "ami-0800db40f6e26830c" # Amazon Linux 2
+  ami = "ami-0f037327d64de9e49" # Amazon Linux 2 x86-64
   # ami           = data.aws_ami.ubuntu.id
   count         = length(var.aws_lb_public_ids)
   instance_type = "t2.micro"
@@ -61,7 +61,7 @@ resource "aws_instance" "public" {
 }
 
 resource "aws_instance" "private" {
-  ami = "ami-0800db40f6e26830c" # Amazon Linux 2
+  ami = "ami-0f037327d64de9e49" # Amazon Linux 2 x86-64
   # ami           = data.aws_ami.ubuntu.id
   count         = length(var.aws_lb_private_ids)
   instance_type = "t2.micro"
