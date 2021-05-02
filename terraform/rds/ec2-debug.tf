@@ -51,10 +51,10 @@ resource "aws_instance" "public" {
     cpu_credits = "unlimited"
   }
 
-  network_interface {
-    network_interface_id = aws_network_interface.public_interface_debug[count.index].id
-    device_index         = 0
-  }
+  # network_interface {
+  #   network_interface_id = aws_network_interface.public_interface_debug[count.index].id
+  #   device_index         = 0
+  # }
   vpc_security_group_ids = [aws_security_group.ec2_public_bastian.id, aws_security_group.example.id]
   tags = {
     Name = "LINE-public-bastiation-${count.index}"
@@ -72,10 +72,10 @@ resource "aws_instance" "private" {
     cpu_credits = "unlimited"
   }
 
-  network_interface {
-    network_interface_id = aws_network_interface.private_interface_debug[count.index].id
-    device_index         = 0
-  }
+  # network_interface {
+  #   network_interface_id = aws_network_interface.private_interface_debug[count.index].id
+  #   device_index         = 0
+  # }
 
   tags = {
     Name = "LINE-private-${count.index}"
