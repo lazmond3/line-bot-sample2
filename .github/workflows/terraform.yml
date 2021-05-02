@@ -3,8 +3,8 @@ name: "Terraform"
 on:
   push:
     branches:
-      - no_such_branch
-#   pull_request:
+      - master
+  pull_request:
 
 defaults:
   run:
@@ -50,7 +50,8 @@ jobs:
       - uses: actions/github-script@0.9.0
         if: github.event_name == 'pull_request'
         env:
-          PLAN: "terraform\n${{ steps.plan.outputs.stdout }}"
+          PLAN: ${{ steps.plan.outputs.stdout }}
+          PLAN_ERROR: ${{ steps.plan.outputs.stderr }}
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
@@ -60,9 +61,23 @@ jobs:
 
             <details><summary>Show Plan</summary>
 
-            \`\`\`${process.env.PLAN}\`\`\`
+            \`\`\`terraform
+            ${process.env.PLAN}
+            \`\`\`
 
             </details>
+
+            ${
+              process.env.PLAN_ERROR &&
+                `<details><summary>Show Plan Error</summary>
+
+                \`\`\`terraform
+                ${process.env.PLAN_ERROR}
+                \`\`\`
+
+                </details>
+            `}
+
 
             *Pusher: @${{ github.actor }}, Action: \`${{ github.event_name }}\`*`;
 

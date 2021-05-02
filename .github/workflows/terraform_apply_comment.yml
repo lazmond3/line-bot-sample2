@@ -1,4 +1,4 @@
-name: "terraform apply"
+name: "terraform apply pr comment"
 
 on:
   issue_comment:
@@ -7,20 +7,27 @@ defaults:
   run:
     working-directory: terraform/env/dev
 
-
 jobs:
   terraform_apply:
-    name: "terraform apply"
+    name: "terraform apply pr comment"
     runs-on: ubuntu-latest
-    # if: ${{ github.event.issue.pull_request }}
-    # if: (github.event.issue.pull_request != null)
+    if: ${{ github.event.issue.pull_request != null && github.event.comment.body == '.deploy' }}
     steps:
-      - name: echo debug apply comment
-        run: echo body is .. ${{ github.event.comment.body }}
-      - name: echo debug event is pull_request not null
-        run: echo github.event.issue.pull_request .. ${{ github.event.issue.pull_request }}
-      - name: exit
-        run: exit 0
+      - name: Checkout
+        uses: actions/checkout@v2
+      - uses: actions/github-script@0.9.0
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const output = `start terraform apply....
+            CI URL: ${process.env.GITHUB_SERVER_URL}/${process.env.GITHUB_REPOSITORY}/actions/runs/${process.env.GITHUB_RUN_ID}
+            `
+            github.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: output
+            })
       - name: Checkout
         uses: actions/checkout@v2
 
@@ -57,4 +64,44 @@ jobs:
         run: exit 1
 
       - name: Terraform Apply
-        run: terraform apply -auto-approve -var-file dev.tfvars
+        id: apply
+        run: terraform apply -no-color -auto-approve -var-file dev.tfvars
+        continue-on-error: true
+
+      - uses: actions/github-script@0.9.0
+        env:
+          APPLY: ${{ steps.apply.outputs.stdout }}
+          APPLY_ERROR: ${{ steps.apply.outputs.stderr }}
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const output = `#### .deploy の結果を表示する。
+            #### Terraform apply 📖\`${{ steps.apply.outcome }}\`
+
+            <details><summary>Show Apply Result</summary>
+
+            \`\`\`terraform
+            ${process.env.APPLY}
+            \`\`\`
+
+            </details>
+            
+            ${ process.env.APPLY_ERROR &&
+              `<details><summary>Error</summary>
+
+              \`\`\`terraform
+              ${process.env.APPLY_ERROR}
+              \`\`\`
+
+              </details>
+            `}`;
+
+            github.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: output
+            })
+      - name: Terraform Apply Status
+        if: steps.apply.outcome == 'failure'
+        run: exit 1

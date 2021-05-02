@@ -65,3 +65,13 @@ module "ecs" {
   container_port               = var.container_port
   aws_ecr_repository_name      = module.ecr-app.aws_ecr_repository_name
 }
+
+# rds をやってみる
+module "rds" {
+  source                         = "../../rds"
+  vpc_id                         = module.vpc.vpc_id
+  aws_lb_public_ids              = module.vpc.aws_subnet_public_ids
+  aws_lb_private_ids             = module.vpc.aws_subnet_private_ids
+  vpc_cidr                       = module.vpc.vpc_cidr
+  debug_ec2_aws_route_table_id_0 = module.vpc.aws_route_table_ids_for_private[0]
+}
