@@ -55,7 +55,7 @@ resource "aws_instance" "public" {
     network_interface_id = aws_network_interface.public_interface_debug[count.index].id
     device_index         = 0
   }
-  tags {
+  tags = {
     Name = "LINE-public-bastiation-${count.index}"
   }
 }
@@ -76,7 +76,7 @@ resource "aws_instance" "private" {
     device_index         = 0
   }
 
-  tags {
+  tags = {
     Name = "LINE-private-${count.index}"
   }
 }
