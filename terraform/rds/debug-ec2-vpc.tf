@@ -5,6 +5,7 @@ resource "aws_vpc" "debug" {
     Name = "handson"
   }
 }
+
 resource "aws_subnet" "debug_public_1a" {
   # 先程作成したVPCを参照し、そのVPC内にSubnetを立てる
   vpc_id = aws_vpc.debug.id
@@ -118,6 +119,13 @@ resource "aws_security_group" "main" {
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"] # 本当は 0.0.0.0 で設定してみてもいいけど
+  }
+
+  ingress {
+    from_port   = -1
+    to_port     = -1
+    protocol    = "icmp"
     cidr_blocks = ["0.0.0.0/0"] # 本当は 0.0.0.0 で設定してみてもいいけど
   }
 
