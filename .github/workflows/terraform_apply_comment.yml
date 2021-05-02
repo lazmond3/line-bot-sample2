@@ -89,3 +89,6 @@ jobs:
               repo: context.repo.repo,
               body: output
             })
+      - name: Terraform Apply Status
+        if: steps.apply.outcome == 'failure'
+        run: exit 1
