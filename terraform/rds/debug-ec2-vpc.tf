@@ -115,9 +115,15 @@ resource "aws_security_group" "main" {
   name   = "handson_all_ec2_bastian"
   vpc_id = aws_vpc.debug.id
 
+  #   ingress {
+  #     from_port   = 22
+  #     to_port     = 22
+  #     protocol    = "tcp"
+  #     cidr_blocks = ["0.0.0.0/0"] # 本当は 0.0.0.0 で設定してみてもいいけど
+  #   }
   ingress {
-    from_port   = 22
-    to_port     = 22
+    from_port   = 0
+    to_port     = 0
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"] # 本当は 0.0.0.0 で設定してみてもいいけど
   }
