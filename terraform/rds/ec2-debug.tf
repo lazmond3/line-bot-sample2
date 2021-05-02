@@ -26,7 +26,7 @@ resource "aws_network_interface" "public_interface_debug" {
 resource "aws_network_interface" "private_interface_debug" {
   count           = length(var.aws_lb_private_ids)
   subnet_id       = var.aws_lb_private_ids[count.index]
-  security_groups = [aws_security_group.ec2_private.id]
+  security_groups = [aws_security_group.ec2_private.id, aws_security_group.ec2_private_nat_to_global.id]
 
   tags = {
     Name = "private_debug_network_interface"

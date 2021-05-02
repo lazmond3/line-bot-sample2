@@ -36,6 +36,18 @@ resource "aws_security_group" "ec2_private" {
   }
 }
 
+resource "aws_security_group" "ec2_private_nat_to_global" {
+  name   = "ec2_private_nat_to_global"
+  vpc_id = var.vpc_id
+
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+}
+
 resource "aws_security_group" "mysql_to_private" {
   name   = "mysql_to_private"
   vpc_id = var.vpc_id
