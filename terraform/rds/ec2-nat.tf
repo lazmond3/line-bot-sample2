@@ -15,7 +15,7 @@ resource "aws_nat_gateway" "this" {
   allocation_id = aws_eip.nat.id # ここで eip をつないでいる
 
   tags = {
-    Name = "${var.app_name}-${count.index}"
+    Name = "line-bot-nat-gateway"
   }
 }
 
