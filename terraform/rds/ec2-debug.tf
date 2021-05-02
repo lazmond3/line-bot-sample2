@@ -55,6 +55,7 @@ resource "aws_instance" "public" {
     network_interface_id = aws_network_interface.public_interface_debug[count.index].id
     device_index         = 0
   }
+  vpc_security_group_ids = [aws_security_group.ec2_public_bastian.id, aws_security_group.example.id]
   tags = {
     Name = "LINE-public-bastiation-${count.index}"
   }
