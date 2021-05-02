@@ -16,8 +16,8 @@ data "aws_ami" "ubuntu" {
 }
 
 resource "aws_network_interface" "public_interface_debug" {
-  count     = length(var.aws_lb_public_ids)
-  subnet_id = var.aws_lb_public_ids[count.index]
+  count           = length(var.aws_lb_public_ids)
+  subnet_id       = var.aws_lb_public_ids[count.index]
   security_groups = [aws_security_group.ec2_public_bastian.id, aws_security_group.example.id]
   tags = {
     Name = "public_debug_network_interface"
