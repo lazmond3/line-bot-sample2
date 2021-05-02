@@ -102,3 +102,78 @@ resource "aws_route_table_association" "private_1a" {
   subnet_id      = aws_subnet.debug_private_1a.id
   route_table_id = aws_route_table.private_1a.id
 }
+
+## EC2
+
+resource "aws_security_group" "main" {
+  name   = "handson_all_ec2_bastian"
+  vpc_id = aws_vpc.debug.id
+
+  ingress {
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"] # 本当は 0.0.0.0 で設定してみてもいいけど
+  }
+
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+}
+
+
+resource "aws_network_interface" "handson_public_interface_debug" {
+  subnet_id       = aws_subnet.debug_public_1a.id
+  security_groups = [aws_security_group.main.id]
+  tags = {
+    Name = "handson_public_debug_network_interface"
+  }
+}
+resource "aws_network_interface" "handson_private_interface_debug" {
+  subnet_id       = aws_subnet.debug_private_1a.id
+  security_groups = [aws_security_group.main.id]
+
+  tags = {
+    Name = "handson_private_debug_network_interface"
+  }
+}
+
+resource "aws_instance" "handson_public" {
+  ami           = "ami-0f037327d64de9e49" # Amazon Linux 2 x86-64
+  instance_type = "t2.micro"
+  key_name      = aws_key_pair.mmm2.key_name
+
+  credit_specification {
+    cpu_credits = "unlimited"
+  }
+
+  network_interface {
+    network_interface_id = aws_network_interface.handson_public_interface_debug.id
+    device_index         = 0
+  }
+  tags = {
+    Name = "handson-LINE-public-bastiation-1"
+  }
+}
+
+resource "aws_instance" "handson_private" {
+  ami           = "ami-0f037327d64de9e49" # Amazon Linux 2 x86-64
+  instance_type = "t2.micro"
+  key_name      = aws_key_pair.mmm2.key_name
+
+  credit_specification {
+    cpu_credits = "unlimited"
+  }
+
+  network_interface {
+    network_interface_id = aws_network_interface.handson_private_interface_debug.id
+    device_index         = 0
+  }
+
+  tags = {
+    Name = "handson-LINE-private-1"
+  }
+}
