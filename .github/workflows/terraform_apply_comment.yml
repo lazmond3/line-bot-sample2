@@ -84,11 +84,13 @@ jobs:
 
             </details>
             
+            ${ process.env.APPLY_ERROR &&  `
             <details><summary>Error</summary>
 
             \`\`\`${process.env.APPLY_ERROR}\`\`\`
 
-            </details>`;
+            </details>
+            ` }`;
 
             github.issues.createComment({
               issue_number: context.issue.number,
