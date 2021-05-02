@@ -18,7 +18,7 @@ data "aws_ami" "ubuntu" {
 resource "aws_network_interface" "public_interface_debug" {
   count     = length(var.aws_lb_public_ids)
   subnet_id = var.aws_lb_public_ids[count.index]
-
+  security_groups = [aws_security_group.ec2_public_bastian.id, aws_security_group.example.id]
   tags = {
     Name = "public_debug_network_interface"
   }
@@ -51,11 +51,10 @@ resource "aws_instance" "public" {
     cpu_credits = "unlimited"
   }
 
-  # network_interface {
-  #   network_interface_id = aws_network_interface.public_interface_debug[count.index].id
-  #   device_index         = 0
-  # }
-  vpc_security_group_ids = [aws_security_group.ec2_public_bastian.id, aws_security_group.example.id]
+  network_interface {
+    network_interface_id = aws_network_interface.public_interface_debug[count.index].id
+    device_index         = 0
+  }
   tags = {
     Name = "LINE-public-bastiation-${count.index}"
   }
