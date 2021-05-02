@@ -38,6 +38,11 @@ resource "aws_internet_gateway" "debug-ec2-main" {
   }
 }
 
+resource "aws_eip" "handson_debug_public_eip" {
+  vpc      = true
+  instance = aws_instance.handson_public.id
+}
+
 resource "aws_eip" "nat_1a" {
   vpc = true
 
