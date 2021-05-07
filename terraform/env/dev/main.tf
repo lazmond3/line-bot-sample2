@@ -77,4 +77,5 @@ module "rds" {
   debug_ec2_aws_route_table_id_0 = module.vpc.aws_route_table_ids_for_private[0]
   mysql_database                 = var.mysql_database
   mysql_password                 = var.mysql_password
+  mysql_user                     = var.mysql_user
 }

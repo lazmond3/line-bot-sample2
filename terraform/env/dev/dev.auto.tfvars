@@ -12,3 +12,4 @@ container_tag           = "0.0.1-5191cf8"
 container_name          = "line-bot-sample2-app" # でいいのか？
 container_port          = "8080"                 # でいいのか？
 mysql_database = "linebotsample2database"
+mysql_user = "user"

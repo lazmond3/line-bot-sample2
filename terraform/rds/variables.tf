@@ -26,3 +26,6 @@ variable "ecs_task_execution_role_id" {
 variable "mysql_password" {
   type = string
 }
+variable "mysql_user" {
+  type = string
+}
