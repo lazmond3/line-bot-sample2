@@ -75,4 +75,5 @@ module "rds" {
   aws_lb_private_ids             = module.vpc.aws_subnet_private_ids
   vpc_cidr                       = module.vpc.vpc_cidr
   debug_ec2_aws_route_table_id_0 = module.vpc.aws_route_table_ids_for_private[0]
+  mysql_database                 = var.mysql_database
 }
