@@ -17,3 +17,7 @@ variable "debug_ec2_aws_route_table_id_0" {
 variable "mysql_database" {
   type = string
 }
+
+variable "ecs_task_execution_role_id" {
+  type = string
+}
