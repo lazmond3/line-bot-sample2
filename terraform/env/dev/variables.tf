@@ -36,3 +36,8 @@ variable "container_port" {
 variable "container_tag" {
   type = string
 }
+
+# secret
+variable "mysql_database" {
+  type = string
+}
