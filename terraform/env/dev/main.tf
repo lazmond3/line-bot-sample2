@@ -76,4 +76,5 @@ module "rds" {
   vpc_cidr                       = module.vpc.vpc_cidr
   debug_ec2_aws_route_table_id_0 = module.vpc.aws_route_table_ids_for_private[0]
   mysql_database                 = var.mysql_database
+  mysql_password                 = var.mysql_password
 }
