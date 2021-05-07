@@ -38,6 +38,7 @@ variable "container_tag" {
 }
 
 # secret
+## これは secret じゃない
 variable "mysql_database" {
   type = string
 }
