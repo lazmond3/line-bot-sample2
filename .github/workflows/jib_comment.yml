@@ -124,11 +124,12 @@ jobs:
           INPUT_COMMIT_USER_NAME: GitHub Actions
           INPUT_COMMIT_USER_EMAIL: actions@github.com
         run: |
+          commit_hash=${{ steps.get_branch.outputs.branch }}
           git add .
           git \
             -c user.name="$INPUT_COMMIT_USER_NAME" -c user.email="$INPUT_COMMIT_USER_EMAIL" \
             commit \
-            -m "Update Tag Version(app) to ${GITHUB_SHA:0:7}" \
+            -m "Update Tag Version(app) to ${commit_hash:0:7}" \
             --author="${{ github.event.comment.actor.login }}"
           git push origin HEAD
       # - uses: stefanzweifel/git-auto-commit-action@v4
