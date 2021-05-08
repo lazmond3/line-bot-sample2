@@ -9,5 +9,7 @@ data "template_file" "container_definitions" {
     database_password = var.aws_ssm_parameter_database_password_secret_arn
     mysql_database    = var.mysql_database
     mysql_user        = var.mysql_user
+    db_address        = var.db_address
+    db_port           = var.db_port
   }
 }

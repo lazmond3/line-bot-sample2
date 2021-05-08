@@ -10,7 +10,7 @@
     ],
     "secrets": [
       {
-        "name": "MYSQL_PASSWORD",
+        "name": "JDBC_PASSWORD",
         "valueFrom": "${database_password}"
       }
     ],
@@ -20,8 +20,12 @@
         "value": "${mysql_database}"
       },
       {
-        "name": "MYSQL_USER",
+        "name": "JDBC_USER",
         "value": "${mysql_user}"
+      },
+      {
+        "name": "JDBC_URL",
+        "value": "jdbc:mysql://address=(host=${db_address})(port=${db_port})/${mysql_database}"
       }
     ]
   }

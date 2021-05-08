@@ -49,3 +49,9 @@ variable "mysql_database" {
 variable "mysql_user" {
   type = string
 }
+variable "db_address" {
+  type = string
+}
+variable "db_port" {
+  type = string
+}
