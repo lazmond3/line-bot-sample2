@@ -109,9 +109,16 @@ jobs:
         run: |
           echo ${GITHUB_SHA:0:7}
       - name: git-auto commit
+        env:
+          INPUT_COMMIT_USER_NAME: GitHub Actions
+          INPUT_COMMIT_USER_EMAIL: actions@github.com
         run: |
           git add .
-          git commit -m "Update Tag Version(app) to ${GITHUB_SHA:0:7}"
+          git \
+            -c user.name="$INPUT_COMMIT_USER_NAME" -c user.email="$INPUT_COMMIT_USER_EMAIL" \
+            commit \
+            -m "Update Tag Version(app) to ${GITHUB_SHA:0:7}" \
+            --author="${{ github.event.comment.actor.login }}"
           git push origin HEAD
       # - uses: stefanzweifel/git-auto-commit-action@v4
       #   with:
