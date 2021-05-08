@@ -82,7 +82,11 @@ jobs:
       - name: jib with Gradle (app)
         id: jib_gradle
         run: |
-          echo "::set-output name=result::$(./gradlew :app:jib)"
+          RESULT="$(./gradlew :app:jib)"
+          RESULT="${RESULT//'%'/'%25'}"
+          RESULT="${RESULT//$'\n'/'%0A'}"
+          RESULT="${RESULT//$'\r'/'%0D'}"
+          echo "::set-output name=result::$RESULT"
         env:
           DOCKER_REPOSITORY_BASE_URL: ${{ secrets.DOCKER_REPOSITORY_BASE_URL }}
 
