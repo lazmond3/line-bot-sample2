@@ -27,7 +27,7 @@ resource "aws_rds_cluster" "this" {
   cluster_identifier = local.name
 
   db_subnet_group_name   = aws_db_subnet_group.this.name
-  vpc_security_group_ids = ["${aws_security_group.this.id}"]
+  vpc_security_group_ids = ["${aws_security_group.rds.id}"]
 
   engine = "aurora-mysql"
   port   = "3306"

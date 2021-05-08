@@ -1,8 +1,7 @@
-resource "aws_security_group" "this" {
+resource "aws_security_group" "rds" {
   name        = local.name
   description = local.name
 
-  # vpc_id = aws_vpc.main.id
   vpc_id = var.vpc_id
 
   egress {
