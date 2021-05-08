@@ -12,6 +12,10 @@
       {
         "name": "JDBC_PASSWORD",
         "valueFrom": "${database_password}"
+      },
+      {
+        "name": "JDBC_URL",
+        "valueFrom": "jdbc:mysql://address=(host=${db_address})(port=${db_port})(user=${mysql_user})(password=${database_password})/${mysql_database}"
       }
     ],
     "environment": [
@@ -22,10 +26,6 @@
       {
         "name": "JDBC_USER",
         "value": "${mysql_user}"
-      },
-      {
-        "name": "JDBC_URL",
-        "value": "jdbc:mysql://address=(host=${db_address})(port=${db_port})/${mysql_database}"
       }
     ]
   }
