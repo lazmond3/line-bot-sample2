@@ -1,5 +1,3 @@
-Downloading https://services.gradle.org/distributions/gradle-6.8.3-bin.zip
-..........10%..........20%..........30%...........40%..........50%..........60%..........70%...........80%..........90%..........100%
 
 Welcome to Gradle 6.8.3!
 
@@ -26,7 +24,7 @@ Starting a Gradle Daemon (subsequent builds will be faster)
 > Task :app:jib
 Setting image creation time to current time; your image may not be reproducible.
 
-Containerizing application to [36m554506578892.dkr.ecr.ap-northeast-1.amazonaws.com/line-bot-sample2-app[0m, [36m554506578892.dkr.ecr.ap-northeast-1.amazonaws.com/line-bot-sample2-app[0m, [36m554506578892.dkr.ecr.ap-northeast-1.amazonaws.com/line-bot-sample2-app:0.0.1-077e5e6[0m...
+Containerizing application to [36m554506578892.dkr.ecr.ap-northeast-1.amazonaws.com/line-bot-sample2-app[0m, [36m554506578892.dkr.ecr.ap-northeast-1.amazonaws.com/line-bot-sample2-app[0m, [36m554506578892.dkr.ecr.ap-northeast-1.amazonaws.com/line-bot-sample2-app:0.0.1-1da8cd9[0m...
 Base image 'adoptopenjdk/openjdk11' does not use a specific image digest - build may not be reproducible
 [1mExecuting tasks:[0m
 [1m[                              ] 0.0% complete[0m
@@ -47,29 +45,26 @@ Base image 'adoptopenjdk/openjdk11' does not use a specific image digest - build
 [1A[1mExecuting tasks:[0m
 [1m[                              ] 0.0% complete[0m
 [1m> authenticating push to 554506578892.dkr.ecr.a...[0m
-[1m> pulling base image manifest[0m
-[1m> launching application layer builders[0m
-[1m[0m
-[6A[0J
-[1A[1mExecuting tasks:[0m
-[1m[                              ] 0.0% complete[0m
-[1m> authenticating push to 554506578892.dkr.ecr.a...[0m
-[1m> launching application layer builders[0m
 [1m> trying mirrors[0m
 [1m[0m
-[6A[0J
+[5A[0J
 [1A[1mExecuting tasks:[0m
 [1m[=                             ] 2.1% complete[0m
 [1m> authenticating push to 554506578892.dkr.ecr.a...[0m
 [1m> pulling base image manifest[0m
-[1m> launching application layer builders[0m
 [1m[0m
-[6A[0J
+[5A[0J
 [1A[1mExecuting tasks:[0m
 [1m[=                             ] 2.1% complete[0m
 [1m> authenticating push to 554506578892.dkr.ecr.a...[0m
-[1m> launching application layer builders[0m
 [1m> pulling base image manifest and container config[0m
+[1m[0m
+[5A[0J
+[1A[1mExecuting tasks:[0m
+[1m[=                             ] 2.1% complete[0m
+[1m> authenticating push to 554506578892.dkr.ecr.a...[0m
+[1m> pulling base image manifest and container config[0m
+[1m> launching application layer builders[0m
 [1m[0m
 [6A[0J
 [1A[1mExecuting tasks:[0m
@@ -107,38 +102,42 @@ Base image 'adoptopenjdk/openjdk11' does not use a specific image digest - build
 [1m[0m
 [9A[0J
 [1A[1mExecuting tasks:[0m
+[1m[==                            ] 6.3% complete[0m
+[1m> authenticating push to 554506578892.dkr.ecr.a...[0m
+[1m> pulling base image manifest and container config[0m
+[1m> building dependencies layer[0m
+[1m> building classes layer[0m
+[1m[0m
+[7A[0J
+[1A[1mExecuting tasks:[0m
 [1m[=                             ] 4.2% complete[0m
 [1m> authenticating push to 554506578892.dkr.ecr.a...[0m
 [1m> pulling base image manifest and container config[0m
 [1m> building dependencies layer[0m
-[1m> building resources layer[0m
+[1m> building project dependencies layer[0m
+[1m> building classes layer[0m
+[1m[0m
+[8A[0J
+[1AUsing credentials from Docker config (/home/runner/.docker/config.json) for 554506578892.dkr.ecr.ap-northeast-1.amazonaws.com/line-bot-sample2-app
+[1mExecuting tasks:[0m
+[1m[=                             ] 4.2% complete[0m
+[1m> authenticating push to 554506578892.dkr.ecr.a...[0m
+[1m> pulling base image manifest and container config[0m
+[1m> building dependencies layer[0m
+[1m> building project dependencies layer[0m
 [1m> building classes layer[0m
 [1m[0m
 [8A[0J
 [1A[1mExecuting tasks:[0m
-[1m[===                           ] 8.3% complete[0m
+[1m[===                           ] 10.4% complete[0m
 [1m> authenticating push to 554506578892.dkr.ecr.a...[0m
 [1m> pulling base image manifest and container config[0m
 [1m> building dependencies layer[0m
+[1m> building classes layer[0m
 [1m[0m
-[6A[0J
-[1AUsing credentials from Docker config (/home/runner/.docker/config.json) for 554506578892.dkr.ecr.ap-northeast-1.amazonaws.com/line-bot-sample2-app
-[1mExecuting tasks:[0m
-[1m[===                           ] 8.3% complete[0m
-[1m> authenticating push to 554506578892.dkr.ecr.a...[0m
-[1m> pulling base image manifest and container config[0m
-[1m> building dependencies layer[0m
-[1m[0m
-[6A[0J
+[7A[0J
 [1A[1mExecuting tasks:[0m
 [1m[====                          ] 12.5% complete[0m
-[1m> authenticating push to 554506578892.dkr.ecr.a...[0m
-[1m> pulling base image manifest and container config[0m
-[1m> building dependencies layer[0m
-[1m[0m
-[6A[0J
-[1A[1mExecuting tasks:[0m
-[1m[==                            ] 6.3% complete[0m
 [1m> authenticating push to 554506578892.dkr.ecr.a...[0m
 [1m> pulling base image manifest and container config[0m
 [1m> building dependencies layer[0m
@@ -168,64 +167,63 @@ Base image 'adoptopenjdk/openjdk11' does not use a specific image digest - build
 [1m[0m
 [6A[0J
 [1A[1mExecuting tasks:[0m
-[1m[======                        ] 18.8% complete[0m
+[1m[======                        ] 18.7% complete[0m
 [1m> pulling base image manifest[0m
 [1m> building dependencies layer[0m
 [1m[0m
 [5A[0J
 [1A[1mExecuting tasks:[0m
-[1m[======                        ] 18.8% complete[0m
+[1m[======                        ] 18.7% complete[0m
 [1m> pulling base image manifest[0m
 [1m> building dependencies layer[0m
 [1m> launching layer pushers[0m
 [1m[0m
 [6A[0J
 [1A[1mExecuting tasks:[0m
-[1m[======                        ] 18.8% complete[0m
+[1m[======                        ] 18.7% complete[0m
 [1m> pulling base image manifest[0m
 [1m> building dependencies layer[0m
-[1m> pushing blob sha256:4e534d3d8062fafa68100cb59...[0m
-[1m> pushing blob sha256:cb8cd73851454ff235e306fb9...[0m
+[1m> pushing blob sha256:b53737ad3e55795d8e1eb8b37...[0m
 [1m[0m
-[7A[0J
+[6A[0J
 [1A[1mExecuting tasks:[0m
-[1m[======                        ] 18.8% complete[0m
+[1m[======                        ] 18.7% complete[0m
 [1m> pulling base image manifest[0m
 [1m> building dependencies layer[0m
-[1m> pushing blob sha256:4e534d3d8062fafa68100cb59...[0m
-[1m> pushing blob sha256:cb8cd73851454ff235e306fb9...[0m
-[1m[0m
-[7A[0J
-[1A[1mExecuting tasks:[0m
-[1m[======                        ] 18.8% complete[0m
-[1m> pulling base image manifest[0m
-[1m> building dependencies layer[0m
-[1m> pushing blob sha256:4e534d3d8062fafa68100cb59...[0m
-[1m> pushing blob sha256:cb8cd73851454ff235e306fb9...[0m
+[1m> pushing blob sha256:b53737ad3e55795d8e1eb8b37...[0m
 [1m> pushing blob sha256:4f6fce0a52ff8e5fc0b0975fc...[0m
+[1m[0m
+[7A[0J
+[1A[1mExecuting tasks:[0m
+[1m[======                        ] 18.7% complete[0m
+[1m> pulling base image manifest[0m
+[1m> building dependencies layer[0m
+[1m> pushing blob sha256:b53737ad3e55795d8e1eb8b37...[0m
+[1m> pushing blob sha256:4f6fce0a52ff8e5fc0b0975fc...[0m
+[1m> pushing blob sha256:4e534d3d8062fafa68100cb59...[0m
 [1m[0m
 [8A[0J
 [1A[1mExecuting tasks:[0m
-[1m[======                        ] 18.8% complete[0m
+[1m[======                        ] 18.7% complete[0m
 [1m> building dependencies layer[0m
-[1m> pushing blob sha256:4e534d3d8062fafa68100cb59...[0m
-[1m> pushing blob sha256:cb8cd73851454ff235e306fb9...[0m
+[1m> pushing blob sha256:b53737ad3e55795d8e1eb8b37...[0m
 [1m> pushing blob sha256:4f6fce0a52ff8e5fc0b0975fc...[0m
+[1m> pushing blob sha256:4e534d3d8062fafa68100cb59...[0m
 [1m> pulling base image manifest and container config[0m
 [1m[0m
 [8A[0J
 [1A[1mExecuting tasks:[0m
 [1m[======                        ] 20.8% complete[0m
 [1m> building dependencies layer[0m
-[1m> pushing blob sha256:cb8cd73851454ff235e306fb9...[0m
-[1m> pushing blob sha256:4f6fce0a52ff8e5fc0b0975fc...[0m
+[1m> pushing blob sha256:b53737ad3e55795d8e1eb8b37...[0m
+[1m> pushing blob sha256:4e534d3d8062fafa68100cb59...[0m
 [1m> pulling base image manifest and container config[0m
 [1m[0m
 [7A[0J
 [1A[1mExecuting tasks:[0m
 [1m[=======                       ] 22.9% complete[0m
 [1m> building dependencies layer[0m
-[1m> pushing blob sha256:cb8cd73851454ff235e306fb9...[0m
+[1m> pushing blob sha256:b53737ad3e55795d8e1eb8b37...[0m
 [1m> pulling base image manifest and container config[0m
 [1m[0m
 [6A[0J
@@ -233,360 +231,324 @@ Base image 'adoptopenjdk/openjdk11' does not use a specific image digest - build
 [1mExecuting tasks:[0m
 [1m[=======                       ] 22.9% complete[0m
 [1m> building dependencies layer[0m
-[1m> pushing blob sha256:cb8cd73851454ff235e306fb9...[0m
+[1m> pushing blob sha256:b53737ad3e55795d8e1eb8b37...[0m
 [1m> pulling base image manifest and container config[0m
 [1m[0m
 [6A[0J
 [1A[1mExecuting tasks:[0m
 [1m[=======                       ] 24.0% complete[0m
 [1m> building dependencies layer[0m
-[1m> pushing blob sha256:cb8cd73851454ff235e306fb9...[0m
+[1m> pushing blob sha256:b53737ad3e55795d8e1eb8b37...[0m
 [1m> pulling base image manifest and container config[0m
 [1m[0m
 [6A[0J
 [1A[1mExecuting tasks:[0m
 [1m[=======                       ] 24.0% complete[0m
 [1m> building dependencies layer[0m
-[1m> pushing blob sha256:cb8cd73851454ff235e306fb9...[0m
+[1m> pushing blob sha256:b53737ad3e55795d8e1eb8b37...[0m
 [1m> pulling platform-specific manifests and conta...[0m
 [1m[0m
 [6A[0J
 [1A[1mExecuting tasks:[0m
 [1m[=======                       ] 24.5% complete[0m
 [1m> building dependencies layer[0m
-[1m> pushing blob sha256:cb8cd73851454ff235e306fb9...[0m
+[1m> pushing blob sha256:b53737ad3e55795d8e1eb8b37...[0m
 [1m> pulling platform-specific manifests and conta...[0m
-[1m[0m
-[6A[0J
-[1A[1mExecuting tasks:[0m
-[1m[=======                       ] 24.5% complete[0m
-[1m> building dependencies layer[0m
-[1m> pushing blob sha256:cb8cd73851454ff235e306fb9...[0m
-[1m> pull container configuration sha256:c537c6b0c...[0m
 [1m[0m
 [6A[0J
 [1A[1mExecuting tasks:[0m
 [1m[========                      ] 26.6% complete[0m
-[1m> building dependencies layer[0m
-[1m> launching layer pushers[0m
+[1m> pushing blob sha256:b53737ad3e55795d8e1eb8b37...[0m
+[1m> pulling platform-specific manifests and conta...[0m
+[1m[0m
+[5A[0J
+[1A[1mExecuting tasks:[0m
+[1m[========                      ] 26.6% complete[0m
+[1m> pushing blob sha256:b53737ad3e55795d8e1eb8b37...[0m
+[1m> pulling platform-specific manifests and conta...[0m
+[1m> pushing blob sha256:6b3bef87af9cb550832413367...[0m
+[1m[0m
+[6A[0J
+[1A[1mExecuting tasks:[0m
+[1m[=========                     ] 28.6% complete[0m
+[1m> pulling platform-specific manifests and conta...[0m
+[1m> pushing blob sha256:6b3bef87af9cb550832413367...[0m
+[1m[0m
+[5A[0J
+[1A[1mExecuting tasks:[0m
+[1m[=========                     ] 28.6% complete[0m
+[1m> pushing blob sha256:6b3bef87af9cb550832413367...[0m
 [1m> pull container configuration sha256:c537c6b0c...[0m
-[1m[0m
-[6A[0J
-[1A[1mExecuting tasks:[0m
-[1m[========                      ] 27.1% complete[0m
-[1m> pulling base image manifest[0m
-[1m> building dependencies layer[0m
-[1m> launching layer pushers[0m
-[1m[0m
-[6A[0J
-[1A[1mExecuting tasks:[0m
-[1m[=========                     ] 29.2% complete[0m
-[1m> building dependencies layer[0m
-[1m> launching layer pushers[0m
 [1m[0m
 [5A[0J
 [1A[1mExecuting tasks:[0m
 [1m[=========                     ] 29.2% complete[0m
-[1m> building dependencies layer[0m
-[1m> launching layer pushers[0m
+[1m> pulling base image manifest[0m
+[1m> pushing blob sha256:6b3bef87af9cb550832413367...[0m
+[1m[0m
+[5A[0J
+[1A[1mExecuting tasks:[0m
+[1m[=========                     ] 31.2% complete[0m
+[1m> pushing blob sha256:6b3bef87af9cb550832413367...[0m
+[1m[0m
+[4A[0J
+[1A[1mExecuting tasks:[0m
+[1m[=========                     ] 31.2% complete[0m
+[1m> pushing blob sha256:6b3bef87af9cb550832413367...[0m
 [1m> scheduling obtaining base images layers[0m
 [1m[0m
-[6A[0J
+[5A[0J
 [1A[1mExecuting tasks:[0m
-[1m[=========                     ] 29.2% complete[0m
-[1m> building dependencies layer[0m
-[1m> launching layer pushers[0m
+[1m[=========                     ] 31.2% complete[0m
+[1m> pushing blob sha256:6b3bef87af9cb550832413367...[0m
 [1m> launching base image layer pullers[0m
 [1m[0m
-[6A[0J
+[5A[0J
 [1A[1mExecuting tasks:[0m
-[1m[=========                     ] 29.2% complete[0m
-[1m> building dependencies layer[0m
-[1m> launching layer pushers[0m
-[1m> checking base image layer sha256:345e3491a907...[0m
-[1m[0m
-[6A[0J
-[1A[1mExecuting tasks:[0m
-[1m[=========                     ] 29.2% complete[0m
-[1m> building dependencies layer[0m
-[1m> launching layer pushers[0m
-[1m> checking base image layer sha256:345e3491a907...[0m
-[1m> checking base image layer sha256:57671312ef6f...[0m
-[1m[0m
-[7A[0J
-[1A[1mExecuting tasks:[0m
-[1m[=========                     ] 29.2% complete[0m
-[1m> building dependencies layer[0m
-[1m> launching layer pushers[0m
-[1m> checking base image layer sha256:345e3491a907...[0m
-[1m> checking base image layer sha256:57671312ef6f...[0m
-[1m> checking base image layer sha256:5e9250ddb7d0...[0m
-[1m[0m
-[8A[0J
-[1A[1mExecuting tasks:[0m
-[1m[=========                     ] 29.2% complete[0m
-[1m> building dependencies layer[0m
-[1m> launching layer pushers[0m
-[1m> checking base image layer sha256:345e3491a907...[0m
-[1m> checking base image layer sha256:57671312ef6f...[0m
-[1m> checking base image layer sha256:5e9250ddb7d0...[0m
-[1m> checking base image layer sha256:7510422d7b7a...[0m
-[1m[0m
-[9A[0J
-[1A[1mExecuting tasks:[0m
-[1m[=========                     ] 29.2% complete[0m
-[1m> building dependencies layer[0m
-[1m> launching layer pushers[0m
-[1m> checking base image layer sha256:345e3491a907...[0m
-[1m> checking base image layer sha256:57671312ef6f...[0m
-[1m> checking base image layer sha256:5e9250ddb7d0...[0m
-[1m> checking base image layer sha256:7510422d7b7a...[0m
+[1m[=========                     ] 31.2% complete[0m
+[1m> pushing blob sha256:6b3bef87af9cb550832413367...[0m
+[1m> launching base image layer pullers[0m
 [1m> scheduling pushing base images layers[0m
 [1m[0m
-[10A[0J
+[6A[0J
 [1A[1mExecuting tasks:[0m
-[1m[=========                     ] 29.2% complete[0m
-[1m> building dependencies layer[0m
-[1m> launching layer pushers[0m
-[1m> checking base image layer sha256:345e3491a907...[0m
+[1m[=========                     ] 31.2% complete[0m
+[1m> pushing blob sha256:6b3bef87af9cb550832413367...[0m
+[1m> scheduling pushing base images layers[0m
 [1m> checking base image layer sha256:57671312ef6f...[0m
-[1m> checking base image layer sha256:5e9250ddb7d0...[0m
-[1m> checking base image layer sha256:7510422d7b7a...[0m
+[1m[0m
+[6A[0J
+[1A[1mExecuting tasks:[0m
+[1m[=========                     ] 31.2% complete[0m
+[1m> pushing blob sha256:6b3bef87af9cb550832413367...[0m
+[1m> checking base image layer sha256:57671312ef6f...[0m
 [1m> launching layer pushers[0m
+[1m[0m
+[6A[0J
+[1A[1mExecuting tasks:[0m
+[1m[=========                     ] 31.2% complete[0m
+[1m> pushing blob sha256:6b3bef87af9cb550832413367...[0m
+[1m> checking base image layer sha256:57671312ef6f...[0m
+[1m> launching layer pushers[0m
+[1m> checking base image layer sha256:5e9250ddb7d0...[0m
+[1m> scheduling building manifests[0m
+[1m[0m
+[8A[0J
+[1A[1mExecuting tasks:[0m
+[1m[=========                     ] 31.2% complete[0m
+[1m> pushing blob sha256:6b3bef87af9cb550832413367...[0m
+[1m> checking base image layer sha256:57671312ef6f...[0m
+[1m> launching layer pushers[0m
+[1m> checking base image layer sha256:5e9250ddb7d0...[0m
+[1m> scheduling building manifests[0m
+[1m[0m
+[8A[0J
+[1A[1mExecuting tasks:[0m
+[1m[=========                     ] 31.2% complete[0m
+[1m> pushing blob sha256:6b3bef87af9cb550832413367...[0m
+[1m> checking base image layer sha256:57671312ef6f...[0m
+[1m> launching layer pushers[0m
+[1m> checking base image layer sha256:5e9250ddb7d0...[0m
+[1m> scheduling building manifests[0m
+[1m> checking base image layer sha256:7510422d7b7a...[0m
+[1m[0m
+[9A[0J
+[1A[1mExecuting tasks:[0m
+[1m[=========                     ] 31.2% complete[0m
+[1m> pushing blob sha256:6b3bef87af9cb550832413367...[0m
+[1m> checking base image layer sha256:57671312ef6f...[0m
+[1m> launching layer pushers[0m
+[1m> checking base image layer sha256:5e9250ddb7d0...[0m
+[1m> scheduling building manifests[0m
+[1m> checking base image layer sha256:7510422d7b7a...[0m
+[1m> checking base image layer sha256:a629fb79ec5c...[0m
 [1m[0m
 [10A[0J
 [1A[1mExecuting tasks:[0m
-[1m[=========                     ] 29.2% complete[0m
-[1m> building dependencies layer[0m
-[1m> launching layer pushers[0m
-[1m> checking base image layer sha256:345e3491a907...[0m
+[1m[=========                     ] 31.2% complete[0m
+[1m> pushing blob sha256:6b3bef87af9cb550832413367...[0m
 [1m> checking base image layer sha256:57671312ef6f...[0m
-[1m> checking base image layer sha256:5e9250ddb7d0...[0m
-[1m> checking base image layer sha256:7510422d7b7a...[0m
 [1m> launching layer pushers[0m
+[1m> checking base image layer sha256:5e9250ddb7d0...[0m
 [1m> scheduling building manifests[0m
+[1m> checking base image layer sha256:7510422d7b7a...[0m
+[1m> checking base image layer sha256:a629fb79ec5c...[0m
+[1m> checking base image layer sha256:345e3491a907...[0m
 [1m[0m
 [11A[0J
 [1A[1mExecuting tasks:[0m
-[1m[=========                     ] 29.2% complete[0m
-[1m> building dependencies layer[0m
-[1m> launching layer pushers[0m
-[1m> checking base image layer sha256:345e3491a907...[0m
+[1m[=========                     ] 31.2% complete[0m
+[1m> pushing blob sha256:6b3bef87af9cb550832413367...[0m
 [1m> checking base image layer sha256:57671312ef6f...[0m
-[1m> checking base image layer sha256:5e9250ddb7d0...[0m
-[1m> checking base image layer sha256:7510422d7b7a...[0m
 [1m> launching layer pushers[0m
+[1m> checking base image layer sha256:5e9250ddb7d0...[0m
 [1m> scheduling building manifests[0m
+[1m> checking base image layer sha256:7510422d7b7a...[0m
 [1m> checking base image layer sha256:a629fb79ec5c...[0m
+[1m> checking base image layer sha256:345e3491a907...[0m
+[1m> scheduling pushing manifests[0m
 [1m[0m
 [12A[0J
 [1A[1mExecuting tasks:[0m
-[1m[=========                     ] 29.2% complete[0m
-[1m> building dependencies layer[0m
+[1m[=========                     ] 31.2% complete[0m
+[1m> pushing blob sha256:6b3bef87af9cb550832413367...[0m
+[1m> checking base image layer sha256:57671312ef6f...[0m
 [1m> launching layer pushers[0m
+[1m> checking base image layer sha256:5e9250ddb7d0...[0m
+[1m> scheduling building manifests[0m
+[1m> checking base image layer sha256:7510422d7b7a...[0m
+[1m> checking base image layer sha256:a629fb79ec5c...[0m
 [1m> checking base image layer sha256:345e3491a907...[0m
-[1m> checking base image layer sha256:57671312ef6f...[0m
-[1m> checking base image layer sha256:5e9250ddb7d0...[0m
-[1m> checking base image layer sha256:7510422d7b7a...[0m
-[1m> launching layer pushers[0m
-[1m> scheduling building manifests[0m
-[1m> checking base image layer sha256:a629fb79ec5c...[0m
-[1m> scheduling pushing manifests[0m
-[1m[0m
-[13A[0J
-[1A[1mExecuting tasks:[0m
-[1m[=========                     ] 29.2% complete[0m
-[1m> building dependencies layer[0m
-[1m> launching layer pushers[0m
-[1m> checking base image layer sha256:345e3491a907...[0m
-[1m> checking base image layer sha256:57671312ef6f...[0m
-[1m> checking base image layer sha256:5e9250ddb7d0...[0m
-[1m> checking base image layer sha256:7510422d7b7a...[0m
-[1m> launching layer pushers[0m
-[1m> scheduling building manifests[0m
-[1m> checking base image layer sha256:a629fb79ec5c...[0m
-[1m> scheduling pushing manifests[0m
-[1m> scheduling pushing container configurations[0m
-[1m[0m
-[14A[0J
-[1A[1mExecuting tasks:[0m
-[1m[=========                     ] 30.8% complete[0m
-[1m> building dependencies layer[0m
-[1m> launching layer pushers[0m
-[1m> checking base image layer sha256:57671312ef6f...[0m
-[1m> checking base image layer sha256:5e9250ddb7d0...[0m
-[1m> checking base image layer sha256:7510422d7b7a...[0m
-[1m> launching layer pushers[0m
-[1m> scheduling building manifests[0m
-[1m> checking base image layer sha256:a629fb79ec5c...[0m
 [1m> scheduling pushing manifests[0m
 [1m> scheduling pushing container configurations[0m
 [1m[0m
 [13A[0J
 [1A[1mExecuting tasks:[0m
-[1m[==========                    ] 32.5% complete[0m
-[1m> building dependencies layer[0m
-[1m> launching layer pushers[0m
+[1m[==========                    ] 33.3% complete[0m
 [1m> checking base image layer sha256:57671312ef6f...[0m
-[1m> checking base image layer sha256:5e9250ddb7d0...[0m
 [1m> launching layer pushers[0m
+[1m> checking base image layer sha256:5e9250ddb7d0...[0m
 [1m> scheduling building manifests[0m
+[1m> checking base image layer sha256:7510422d7b7a...[0m
 [1m> checking base image layer sha256:a629fb79ec5c...[0m
+[1m> checking base image layer sha256:345e3491a907...[0m
 [1m> scheduling pushing manifests[0m
 [1m> scheduling pushing container configurations[0m
 [1m[0m
 [12A[0J
 [1A[1mExecuting tasks:[0m
-[1m[==========                    ] 34.2% complete[0m
-[1m> building dependencies layer[0m
-[1m> launching layer pushers[0m
+[1m[==========                    ] 35.0% complete[0m
 [1m> checking base image layer sha256:57671312ef6f...[0m
-[1m> checking base image layer sha256:5e9250ddb7d0...[0m
 [1m> launching layer pushers[0m
+[1m> checking base image layer sha256:5e9250ddb7d0...[0m
 [1m> scheduling building manifests[0m
+[1m> checking base image layer sha256:7510422d7b7a...[0m
+[1m> checking base image layer sha256:345e3491a907...[0m
 [1m> scheduling pushing manifests[0m
 [1m> scheduling pushing container configurations[0m
 [1m[0m
 [11A[0J
 [1A[1mExecuting tasks:[0m
-[1m[===========                   ] 35.8% complete[0m
-[1m> building dependencies layer[0m
-[1m> launching layer pushers[0m
+[1m[===========                   ] 36.7% complete[0m
 [1m> checking base image layer sha256:57671312ef6f...[0m
 [1m> launching layer pushers[0m
+[1m> checking base image layer sha256:5e9250ddb7d0...[0m
 [1m> scheduling building manifests[0m
+[1m> checking base image layer sha256:7510422d7b7a...[0m
 [1m> scheduling pushing manifests[0m
 [1m> scheduling pushing container configurations[0m
 [1m[0m
 [10A[0J
 [1A[1mExecuting tasks:[0m
-[1m[===========                   ] 37.5% complete[0m
-[1m> building dependencies layer[0m
+[1m[===========                   ] 38.3% complete[0m
 [1m> launching layer pushers[0m
-[1m> launching layer pushers[0m
+[1m> checking base image layer sha256:5e9250ddb7d0...[0m
 [1m> scheduling building manifests[0m
+[1m> checking base image layer sha256:7510422d7b7a...[0m
 [1m> scheduling pushing manifests[0m
 [1m> scheduling pushing container configurations[0m
 [1m[0m
 [9A[0J
 [1A[1mExecuting tasks:[0m
-[1m[============                  ] 39.6% complete[0m
+[1m[============                  ] 40.0% complete[0m
 [1m> launching layer pushers[0m
-[1m> launching layer pushers[0m
+[1m> checking base image layer sha256:5e9250ddb7d0...[0m
 [1m> scheduling building manifests[0m
 [1m> scheduling pushing manifests[0m
 [1m> scheduling pushing container configurations[0m
 [1m[0m
 [8A[0J
 [1A[1mExecuting tasks:[0m
-[1m[============                  ] 39.6% complete[0m
+[1m[============                  ] 41.7% complete[0m
 [1m> launching layer pushers[0m
 [1m> scheduling building manifests[0m
 [1m> scheduling pushing manifests[0m
 [1m> scheduling pushing container configurations[0m
-[1m> pushing blob sha256:6b3bef87af9cb550832413367...[0m
 [1m[0m
-[8A[0J
+[7A[0J
 [1A[1mExecuting tasks:[0m
-[1m[============                  ] 39.6% complete[0m
+[1m[============                  ] 41.7% complete[0m
 [1m> launching layer pushers[0m
 [1m> scheduling pushing manifests[0m
 [1m> scheduling pushing container configurations[0m
-[1m> pushing blob sha256:6b3bef87af9cb550832413367...[0m
 [1m> building image format[0m
 [1m[0m
-[8A[0J
+[7A[0J
 [1A
 [1mExecuting tasks:[0m
-[1m[============                  ] 39.6% complete[0m
+[1m[============                  ] 41.7% complete[0m
 [1m> launching layer pushers[0m
 [1m> scheduling pushing manifests[0m
 [1m> scheduling pushing container configurations[0m
-[1m> pushing blob sha256:6b3bef87af9cb550832413367...[0m
 [1m> building image format[0m
 [1m[0m
-[8A[0J
+[7A[0J
 [1AContainer entrypoint set to [java, -server, -XX:+UseG1GC, -XX:+ScavengeBeforeFullGC, -XX:+ExitOnOutOfMemoryError, -Dfile.encoding=UTF-8, -Duser.timezone=Asia/Tokyo, -XX:MaxMetaspaceSize=200M, -Dserver.port=8080, -cp, /app/resources:/app/classes:/app/libs/*, ryokaz.linebot.sample2.app.AppApplicationKt]
 [1mExecuting tasks:[0m
-[1m[============                  ] 39.6% complete[0m
+[1m[============                  ] 41.7% complete[0m
 [1m> launching layer pushers[0m
 [1m> scheduling pushing manifests[0m
 [1m> scheduling pushing container configurations[0m
-[1m> pushing blob sha256:6b3bef87af9cb550832413367...[0m
 [1m> building image format[0m
 [1m[0m
-[8A[0J
+[7A[0J
 [1A[1mExecuting tasks:[0m
-[1m[==============                ] 47.9% complete[0m
+[1m[===============               ] 50.0% complete[0m
 [1m> launching layer pushers[0m
 [1m> scheduling pushing manifests[0m
 [1m> scheduling pushing container configurations[0m
-[1m> pushing blob sha256:6b3bef87af9cb550832413367...[0m
 [1m[0m
-[7A[0J
+[6A[0J
 [1A[1mExecuting tasks:[0m
-[1m[==============                ] 47.9% complete[0m
+[1m[===============               ] 50.0% complete[0m
 [1m> launching layer pushers[0m
 [1m> scheduling pushing manifests[0m
-[1m> pushing blob sha256:6b3bef87af9cb550832413367...[0m
 [1m> pushing container configuration[0m
 [1m[0m
-[7A[0J
+[6A[0J
 [1A[1mExecuting tasks:[0m
-[1m[==============                ] 47.9% complete[0m
+[1m[===============               ] 50.0% complete[0m
 [1m> launching layer pushers[0m
 [1m> scheduling pushing manifests[0m
-[1m> pushing blob sha256:6b3bef87af9cb550832413367...[0m
 [1m> pushing container configuration[0m
 [1m> building a manifest list or a single manifest[0m
 [1m[0m
-[8A[0J
+[7A[0J
 [1A[1mExecuting tasks:[0m
-[1m[==============                ] 47.9% complete[0m
+[1m[===============               ] 50.0% complete[0m
 [1m> launching layer pushers[0m
 [1m> scheduling pushing manifests[0m
-[1m> pushing blob sha256:6b3bef87af9cb550832413367...[0m
 [1m> building a manifest list or a single manifest[0m
-[1m> pushing blob sha256:b4a444ebb4369208c9dc4f1d7...[0m
-[1m[0m
-[8A[0J
-[1A[1mExecuting tasks:[0m
-[1m[=================             ] 56.2% complete[0m
-[1m> launching layer pushers[0m
-[1m> scheduling pushing manifests[0m
-[1m> pushing blob sha256:6b3bef87af9cb550832413367...[0m
-[1m> pushing blob sha256:b4a444ebb4369208c9dc4f1d7...[0m
+[1m> pushing blob sha256:6da0a7b094ba105a0c84eb001...[0m
 [1m[0m
 [7A[0J
 [1A[1mExecuting tasks:[0m
-[1m[=================             ] 56.2% complete[0m
+[1m[=================             ] 58.3% complete[0m
 [1m> launching layer pushers[0m
 [1m> scheduling pushing manifests[0m
-[1m> pushing blob sha256:6b3bef87af9cb550832413367...[0m
-[1m> pushing blob sha256:b4a444ebb4369208c9dc4f1d7...[0m
-[1m> checking existence of manifest for sha256:dd1...[0m
+[1m> pushing blob sha256:6da0a7b094ba105a0c84eb001...[0m
 [1m[0m
-[8A[0J
+[6A[0J
 [1A[1mExecuting tasks:[0m
-[1m[===================           ] 64.6% complete[0m
+[1m[=================             ] 58.3% complete[0m
 [1m> launching layer pushers[0m
 [1m> scheduling pushing manifests[0m
-[1m> pushing blob sha256:6b3bef87af9cb550832413367...[0m
-[1m> pushing blob sha256:b4a444ebb4369208c9dc4f1d7...[0m
+[1m> pushing blob sha256:6da0a7b094ba105a0c84eb001...[0m
+[1m> checking existence of manifest for sha256:af8...[0m
 [1m[0m
 [7A[0J
 [1A[1mExecuting tasks:[0m
 [1m[====================          ] 66.7% complete[0m
 [1m> launching layer pushers[0m
 [1m> scheduling pushing manifests[0m
-[1m> pushing blob sha256:b4a444ebb4369208c9dc4f1d7...[0m
+[1m> pushing blob sha256:6da0a7b094ba105a0c84eb001...[0m
 [1m[0m
 [6A[0J
 [1A[1mExecuting tasks:[0m
 [1m[=====================         ] 70.8% complete[0m
 [1m> launching layer pushers[0m
 [1m> scheduling pushing manifests[0m
-[1m> pushing blob sha256:b4a444ebb4369208c9dc4f1d7...[0m
+[1m> pushing blob sha256:6da0a7b094ba105a0c84eb001...[0m
 [1m[0m
 [6A[0J
 [1A[1mExecuting tasks:[0m
@@ -605,13 +567,14 @@ Base image 'adoptopenjdk/openjdk11' does not use a specific image digest - build
 [1m[=======================       ] 75.0% complete[0m
 [1m> launching layer pushers[0m
 [1m> pushing manifest for latest[0m
+[1m> pushing manifest for 0.0.1-1da8cd9[0m
 [1m[0m
-[5A[0J
+[6A[0J
 [1A[1mExecuting tasks:[0m
 [1m[=======================       ] 75.0% complete[0m
 [1m> launching layer pushers[0m
 [1m> pushing manifest for latest[0m
-[1m> pushing manifest for 0.0.1-077e5e6[0m
+[1m> pushing manifest for 0.0.1-1da8cd9[0m
 [1m[0m
 [6A[0J
 [1A[1mExecuting tasks:[0m
@@ -642,11 +605,11 @@ Base image 'adoptopenjdk/openjdk11' does not use a specific image digest - build
 [1m> launching layer pushers[0m
 [1m[0m
 [4A[0J
-[1ABuilt and pushed image as [36m554506578892.dkr.ecr.ap-northeast-1.amazonaws.com/line-bot-sample2-app[0m, [36m554506578892.dkr.ecr.ap-northeast-1.amazonaws.com/line-bot-sample2-app[0m, [36m554506578892.dkr.ecr.ap-northeast-1.amazonaws.com/line-bot-sample2-app:0.0.1-077e5e6[0m
+[1ABuilt and pushed image as [36m554506578892.dkr.ecr.ap-northeast-1.amazonaws.com/line-bot-sample2-app[0m, [36m554506578892.dkr.ecr.ap-northeast-1.amazonaws.com/line-bot-sample2-app[0m, [36m554506578892.dkr.ecr.ap-northeast-1.amazonaws.com/line-bot-sample2-app:0.0.1-1da8cd9[0m
 [1mExecuting tasks:[0m
 [1m[============================  ] 91.7% complete[0m
 [1m> launching layer pushers[0m
 [1m[0m
 
-BUILD SUCCESSFUL in 1m 52s
+BUILD SUCCESSFUL in 26s
 7 actionable tasks: 7 executed
