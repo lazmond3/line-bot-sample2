@@ -102,7 +102,7 @@ jobs:
         if: steps.jib.outcome == 'failure'
         run: exit 1
       - name: update tag version
-        run: sed -i -e "s/^container_tag\(  *\)= \"\(..*\)\".*$/container_tag\1= \"`cat VERSION.txt`-`git rev-parse --short=7 HEAD`\"/g" 
+        run: sed -i -e "s/^container_tag\(  *\)= \"\(..*\)\".*$/container_tag\1= \"`cat VERSION.txt`-`git rev-parse --short=7 HEAD`\"/g" terraform/env/dev/dev.auto.tfvars
 
       - uses: stefanzweifel/git-auto-commit-action@v4
         with:
