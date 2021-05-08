@@ -9,12 +9,6 @@ jobs:
     runs-on: ubuntu-latest
     if: ${{ github.event.issue.pull_request != null && github.event.comment.body == '.build' }}
     steps:
-      - name: Test
-        run: |
-          v=feature/55-terraform-cloudwatch-logs
-          echo ${v:0:5}
-          echo ${v:0:5} github_sha: ${GITHUB_SHA:0:7}
-          exit 1
       - uses: actions/github-script@0.9.0
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
@@ -110,11 +104,10 @@ jobs:
       - name: update tag version
         run: sed -i -e "s/^container_tag\(  *\)= \"\(..*\)\".*$/container_tag\1= \"`cat VERSION.txt`-`git rev-parse --short=7 HEAD`\"/g" terraform/env/dev/dev.auto.tfvars
 
-      # - uses: bhowell2/github-substring-action
-      #   id: substring
-      #   with:
-      #     value: ${{ GITHUB_SHA }}
-      #     length_from_start: 3
+      - name: GITHUB_SHA substring 0:7
+        id: hash_substring
+        run: |
+          echo ${GITHUB_SHA:0:7}
       - uses: stefanzweifel/git-auto-commit-action@v4
         with:
-          commit_message: Update Tag Version(app) to ${{ steps.substring.outputs.stdout }}
+          commit_message: Update Tag Version(app) to ${{ steps.hash_substring.outputs.stdout }}
