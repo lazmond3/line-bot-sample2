@@ -62,9 +62,9 @@ resource "aws_rds_cluster" "this" {
   engine = "aurora-mysql"
   port   = "3306"
 
-#   database_name   = aws_ssm_parameter.database_name.value
-  database_name   = var.mysql_database
-#   master_username = aws_ssm_parameter.database_user.value
+  #   database_name   = aws_ssm_parameter.database_name.value
+  database_name = var.mysql_database
+  #   master_username = aws_ssm_parameter.database_user.value
   master_username = var.mysql_user
   master_password = aws_ssm_parameter.database_password.value
 
