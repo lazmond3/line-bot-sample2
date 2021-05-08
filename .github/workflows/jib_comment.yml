@@ -139,7 +139,7 @@ jobs:
           INPUT_COMMIT_USER_NAME: GitHub Actions
           INPUT_COMMIT_USER_EMAIL: actions@github.com
         run: |
-          commit_hash=${{ steps.get_branch.outputs.branch }}
+          commit_hash=${{ fromJSON(steps.get-pr.outputs.result).head.sha }}
           git add .
           git \
             -c user.name="$INPUT_COMMIT_USER_NAME" -c user.email="$INPUT_COMMIT_USER_EMAIL" \
