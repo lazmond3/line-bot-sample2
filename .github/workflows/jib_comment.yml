@@ -1,11 +1,11 @@
-name: "jib"
+name: "jib_comment"
 
 on:
   issue_comment:
 
 jobs:
   jib_comment:
-    name: "jib"
+    name: "jib_comment"
     runs-on: ubuntu-latest
     if: ${{ github.event.issue.pull_request != null && github.event.comment.body == '.build' }}
     steps:
@@ -58,6 +58,7 @@ jobs:
         run: ./gradlew :app:jib
         env:
           DOCKER_REPOSITORY_BASE_URL: ${{ secrets.DOCKER_REPOSITORY_BASE_URL }}
+
       - name: Cleanup Gradle Cache
         run: |
           rm -f ~/.gradle/caches/modules-2/modules-2.lock
