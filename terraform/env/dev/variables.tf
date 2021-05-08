@@ -42,6 +42,9 @@ variable "container_tag" {
 variable "mysql_database" {
   type = string
 }
+variable "mysql_user" {
+  type = string
+}
 
 # TF_VAR_mysql_password で渡す
 variable "mysql_password" {
