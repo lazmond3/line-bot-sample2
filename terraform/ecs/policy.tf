@@ -73,7 +73,7 @@ resource "aws_iam_role_policy" "cloudwatch_logs" {
                   "logs:PutLogEvents"
               ],
               "Resource": [
-                  ${aws_cloudwatch_log_group.line-bot-sample2.arn}
+                  "${aws_cloudwatch_log_group.line-bot-sample2.arn}"
               ]
           }
       ]    
