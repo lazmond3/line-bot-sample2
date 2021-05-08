@@ -145,7 +145,7 @@ jobs:
             commit \
             -m "Update Tag Version(app) to ${commit_hash:0:7}" \
             --author="${{ github.event.comment.actor.login }}"
-          git push origin HEAD
+          git push origin ${{ fromJSON(steps.get-pr.outputs.result).head.ref }}
       # - uses: stefanzweifel/git-auto-commit-action@v4
       #   with:
       #     commit_message: Update Tag Version(app) to ${{ github.sha }}
