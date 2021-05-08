@@ -14,3 +14,18 @@ variable "vpc_cidr" {
 variable "debug_ec2_aws_route_table_id_0" {
   type = string
 }
+variable "mysql_database" {
+  type = string
+}
+
+variable "ecs_task_execution_role_id" {
+  type = string
+}
+
+# TF_VAR_mysql_password で渡す
+variable "mysql_password" {
+  type = string
+}
+variable "mysql_user" {
+  type = string
+}

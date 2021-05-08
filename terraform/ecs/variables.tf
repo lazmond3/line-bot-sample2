@@ -40,3 +40,12 @@ variable "container_tag" {
 variable "aws_ecr_repository_name" {
   type = string
 }
+variable "aws_ssm_parameter_database_password_secret_arn" {
+  type = string
+}
+variable "mysql_database" {
+  type = string
+}
+variable "mysql_user" {
+  type = string
+}

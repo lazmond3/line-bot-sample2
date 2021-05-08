@@ -36,3 +36,17 @@ variable "container_port" {
 variable "container_tag" {
   type = string
 }
+
+# secret
+## これは secret じゃない
+variable "mysql_database" {
+  type = string
+}
+variable "mysql_user" {
+  type = string
+}
+
+# TF_VAR_mysql_password で渡す
+variable "mysql_password" {
+  type = string
+}
