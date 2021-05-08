@@ -30,6 +30,10 @@
       {
         "name": "DB_PORT",
         "value":  "${db_port}"
+      },
+      {
+        "name": "CONTAINER_TAG",
+        "value":  "${container_tag}"
       }
     ]
   }

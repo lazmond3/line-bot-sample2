@@ -13,4 +13,7 @@ class HelloController {
         logger.info { "hello in app controller logger.info" }
         return "world"
     }
+
+    @GetMapping("/version")
+    fun version(): String? = System.getenv("CONTAINER_TAG")
 }
