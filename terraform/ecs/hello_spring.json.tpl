@@ -10,22 +10,26 @@
     ],
     "secrets": [
       {
-        "name": "JDBC_PASSWORD",
+        "name": "DB_PASSWORD",
         "valueFrom": "${database_password}"
-      },
-      {
-        "name": "JDBC_URL",
-        "valueFrom": "jdbc:mysql://address=(host=${db_address})(port=${db_port})(user=${mysql_user})(password=${database_password})/${mysql_database}"
       }
     ],
     "environment": [
       {
-        "name": "MYSQL_DATABASE",
+        "name": "DB_DATABASE",
         "value": "${mysql_database}"
       },
       {
-        "name": "JDBC_USER",
+        "name": "DB_USER",
         "value": "${mysql_user}"
+      },
+      {
+        "name": "DB_ADDRESS",
+        "value": "${db_address}"
+      },
+      {
+        "name": "DB_PORT",
+        "value":  "${db_port}"
       }
     ]
   }
