@@ -35,6 +35,14 @@
         "name": "CONTAINER_TAG",
         "value":  "${container_tag}"
       }
-    ]
+    ],
+    "logConfiguration": {
+      "logDriver": "awslogs",
+      "options": {
+        "awslogs-group": "/ecs/line-bot-sample2/log-example",
+        "awslogs-region": "ap-northeast-1",
+        "awslogs-stream-prefix": "ecs"
+      }
+    }
   }
 ]
