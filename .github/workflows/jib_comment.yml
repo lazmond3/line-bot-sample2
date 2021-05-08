@@ -23,8 +23,19 @@ jobs:
               body: output
             })
 
-      - name: Checkout
+      # - name: Checkout
+      #   uses: actions/checkout@v2
+      - name: "Get branch name and sha"
+        id: get_branch
+        run: |
+          PR=$(curl -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" ${{ github.event.issue.pull_request.url }})
+          echo "::set-output name=branch::$(echo $PR | jq -r '.head.ref')"
+          echo "::set-output name=sha::$(echo $PR | jq -r '.head.sha')"
+
+      - name: "Checkout"
         uses: actions/checkout@v2
+        with:
+          ref: ${{ steps.get_branch.outputs.branch }}
 
       - name: Configure AWS credentials from Test account
         uses: aws-actions/configure-aws-credentials@v1
