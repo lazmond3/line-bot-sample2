@@ -8,7 +8,7 @@ resource "aws_iam_role_policy" "mysql_db_password_policy_secretsmanager" {
     "Statement": [
       {
         "Action": [
-          "secretsmanager:GetSecretValue"
+          "ssm:GetParameters"
         ],
         "Effect": "Allow",
         "Resource": [
