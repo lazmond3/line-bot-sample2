@@ -8,7 +8,7 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-validation")
     implementation("io.github.microutils:kotlin-logging")
 
-//    implementation(project(":common"))
+    implementation(project(":common"))
 
     testImplementation("org.jeasy:easy-random-core")
     implementation("com.squareup.retrofit2:retrofit")

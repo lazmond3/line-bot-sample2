@@ -1,0 +1,102 @@
+name: "jib"
+
+on:
+  issue_comment:
+
+jobs:
+  jib_comment:
+    name: "jib"
+    runs-on: ubuntu-latest
+    if: ${{ github.event.issue.pull_request != null && github.event.comment.body == '.build' }}
+    steps:
+      - uses: actions/github-script@0.9.0
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const output = `start :app:jib build....
+            CI URL: ${process.env.GITHUB_SERVER_URL}/${process.env.GITHUB_REPOSITORY}/actions/runs/${process.env.GITHUB_RUN_ID}
+            `
+            github.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: output
+            })
+
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Configure AWS credentials from Test account
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ap-northeast-1
+
+      - name: Login to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v1
+
+      - name: Set up JDK 11
+        uses: actions/setup-java@v2
+        with:
+          java-version: '11'
+          distribution: 'adopt'
+
+      - name: Cache Gradle packages
+        uses: actions/cache@v2
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+          restore-keys: |
+            ${{ runner.os }}-gradle-
+
+      - name: jib with Gradle (app)
+        id: jib
+        run: ./gradlew :app:jib
+        env:
+          DOCKER_REPOSITORY_BASE_URL: ${{ secrets.DOCKER_REPOSITORY_BASE_URL }}
+      - name: Cleanup Gradle Cache
+        run: |
+          rm -f ~/.gradle/caches/modules-2/modules-2.lock
+          rm -f ~/.gradle/caches/modules-2/gc.properties
+
+      - uses: actions/github-script@0.9.0
+        env:
+          JIB: ${{ steps.jib.outputs.stdout }}
+          JIB_ERROR: ${{ steps.jib.outputs.stderr }}
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const output = `#### .build の結果を表示する。
+            #### ./gradlew :app:jib 📖\`${{ steps.jib.outcome }}\`
+
+            <details><summary>Show Jib Result</summary>
+
+            \`\`\`txt
+            ${process.env.JIB}
+            \`\`\`
+
+            </details>
+            
+            ${ process.env.JIB_ERROR &&
+              `<details><summary>Error</summary>
+
+              \`\`\`txt
+              ${process.env.JIB_ERROR}
+              \`\`\`
+
+              </details>
+            `}`;
+
+            github.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: output
+            })
+      - name: Jib Status
+        if: steps.jib.outcome == 'failure'
+        run: exit 1

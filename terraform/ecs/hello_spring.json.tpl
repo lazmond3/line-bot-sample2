@@ -10,18 +10,26 @@
     ],
     "secrets": [
       {
-        "name": "MYSQL_PASSWORD",
+        "name": "DB_PASSWORD",
         "valueFrom": "${database_password}"
       }
     ],
     "environment": [
       {
-        "name": "MYSQL_DATABASE",
+        "name": "DB_DATABASE",
         "value": "${mysql_database}"
       },
       {
-        "name": "MYSQL_USER",
+        "name": "DB_USER",
         "value": "${mysql_user}"
+      },
+      {
+        "name": "DB_ADDRESS",
+        "value": "${db_address}"
+      },
+      {
+        "name": "DB_PORT",
+        "value":  "${db_port}"
       }
     ]
   }

@@ -67,6 +67,8 @@ module "ecs" {
   aws_ssm_parameter_database_password_secret_arn = module.rds.aws_ssm_parameter_database_password_secret_arn
   mysql_database                                 = var.mysql_database
   mysql_user                                     = var.mysql_user
+  db_address                                     = module.rds.db_address
+  db_port                                        = module.rds.db_port
 }
 
 # rds をやってみる
