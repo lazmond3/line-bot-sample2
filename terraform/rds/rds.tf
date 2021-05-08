@@ -12,7 +12,7 @@
 # variables だと `${}` 展開できないのでこちらを使用しました。
 # 他にやり方があれば教えてほしいです。
 locals {
-  name = "linebot-sample2-rds-mysql"
+  name = "${var.app_name}-rds-mysql"
 }
 
 resource "aws_db_subnet_group" "this" {
