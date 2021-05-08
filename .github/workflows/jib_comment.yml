@@ -145,4 +145,4 @@ jobs:
             commit \
             -m "Update Tag Version(app) to ${commit_hash:0:7}" \
             --author="${{ github.event.comment.actor.login }}"
-          git push origin ${{ fromJSON(steps.get-pr.outputs.result).head.ref }}
+          git push --set-upstream origin ${{ fromJSON(steps.get-pr.outputs.result).head.ref }}
