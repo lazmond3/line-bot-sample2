@@ -13,7 +13,7 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
-            const output = `start :app:jib build....
+            const output = `#### start :app:jib build....
             CI URL: ${process.env.GITHUB_SERVER_URL}/${process.env.GITHUB_REPOSITORY}/actions/runs/${process.env.GITHUB_RUN_ID}
             `
             github.issues.createComment({
@@ -80,8 +80,14 @@ jobs:
             ${{ runner.os }}-gradle-
 
       - name: jib with Gradle (app)
-        id: jib
-        run: ./gradlew :app:jib
+        id: jib_gradle
+        run: |
+          RESULT="$(./gradlew :app:jib --console=plain)"
+          echo "$RESULT"
+          RESULT="${RESULT//'%'/'%25'}"
+          RESULT="${RESULT//$'\n'/'%0A'}"
+          RESULT="${RESULT//$'\r'/'%0D'}"
+          echo "::set-output name=result::$RESULT"
         env:
           DOCKER_REPOSITORY_BASE_URL: ${{ secrets.DOCKER_REPOSITORY_BASE_URL }}
 
@@ -92,13 +98,12 @@ jobs:
 
       - uses: actions/github-script@0.9.0
         env:
-          JIB: ${{ steps.jib.outputs.stdout }}
-          JIB_ERROR: ${{ steps.jib.outputs.stderr }}
+          JIB: ${{ steps.jib_gradle.outputs.result }}
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
             const output = `#### .build の結果を表示する。
-            #### ./gradlew :app:jib 📖\`${{ steps.jib.outcome }}\`
+            #### ./gradlew :app:jib 📖\`${{ steps.jib_gradle.outcome }}\`
 
             <details><summary>Show Jib Result</summary>
 
@@ -139,7 +144,7 @@ jobs:
           INPUT_COMMIT_USER_NAME: GitHub Actions
           INPUT_COMMIT_USER_EMAIL: actions@github.com
         run: |
-          commit_hash=${{ steps.get_branch.outputs.branch }}
+          commit_hash=${{ fromJSON(steps.get-pr.outputs.result).head.sha }}
           git add .
           git \
             -c user.name="$INPUT_COMMIT_USER_NAME" -c user.email="$INPUT_COMMIT_USER_EMAIL" \

@@ -11,5 +11,6 @@ data "template_file" "container_definitions" {
     mysql_user        = var.mysql_user
     db_address        = var.db_address
     db_port           = var.db_port
+    log_group         = "/aws/ecs/${var.app_name}"
   }
 }

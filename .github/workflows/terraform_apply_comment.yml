@@ -13,20 +13,6 @@ jobs:
     runs-on: ubuntu-latest
     if: ${{ github.event.issue.pull_request != null && github.event.comment.body == '.deploy' }}
     steps:
-      # - name: Checkout
-      #   uses: actions/checkout@v2
-      # checkout
-      # - name: "Get branch name and sha"
-      #   id: get_branch
-      #   run: |
-      #     PR=$(curl -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" ${{ github.event.issue.pull_request.url }})
-      #     echo "::set-output name=branch::$(echo $PR | jq -r '.head.ref')"
-      #     echo "::set-output name=sha::$(echo $PR | jq -r '.head.sha')"
-
-      # - name: "Checkout"
-      #   uses: actions/checkout@v2
-      #   with:
-      #     ref: ${{ steps.get_branch.outputs.branch }}
       - uses: actions/github-script@v3
         id: get-pr
         with:
@@ -52,7 +38,7 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
-            const output = `start terraform apply....
+            const output = `#### start terraform apply....
             CI URL: ${process.env.GITHUB_SERVER_URL}/${process.env.GITHUB_REPOSITORY}/actions/runs/${process.env.GITHUB_RUN_ID}
             `
             github.issues.createComment({

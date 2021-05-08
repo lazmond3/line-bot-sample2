@@ -57,6 +57,7 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
+            const errorLine = `${process.env.PLAN_ERROR}`.trimLeft();
             const output = `#### Terraform Format and Style 🖌\`${{ steps.fmt.outcome }}\`
             #### Terraform Initialization ⚙️\`${{ steps.init.outcome }}\`
             #### Terraform Plan 📖\`${{ steps.plan.outcome }}\`
@@ -74,7 +75,7 @@ jobs:
                 `<details><summary>Show Plan Error</summary>
 
                 \`\`\`terraform
-                ${process.env.PLAN_ERROR}
+                ${errorLine}
                 \`\`\`
 
                 </details>
