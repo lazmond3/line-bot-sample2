@@ -13,8 +13,6 @@ jobs:
     runs-on: ubuntu-latest
     if: ${{ github.event.issue.pull_request != null && github.event.comment.body == '.deploy' }}
     steps:
-      # - name: Checkout
-      #   uses: actions/checkout@v2
       # checkout
       # - name: "Get branch name and sha"
       #   id: get_branch
