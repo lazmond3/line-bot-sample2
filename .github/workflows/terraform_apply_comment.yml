@@ -13,19 +13,6 @@ jobs:
     runs-on: ubuntu-latest
     if: ${{ github.event.issue.pull_request != null && github.event.comment.body == '.deploy' }}
     steps:
-      - uses: actions/github-script@0.9.0
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          script: |
-            const output = `start .deploy ....
-            CI URL: ${process.env.GITHUB_SERVER_URL}/${process.env.GITHUB_REPOSITORY}/actions/runs/${process.env.GITHUB_RUN_ID}
-            `
-            github.issues.createComment({
-              issue_number: context.issue.number,
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              body: output
-            })
       # - name: Checkout
       #   uses: actions/checkout@v2
       # checkout
