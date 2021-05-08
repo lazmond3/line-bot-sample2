@@ -46,10 +46,10 @@ jobs:
           repository: ${{ fromJSON(steps.get-pr.outputs.result).head.repo.full_name }}
           ref: ${{ fromJSON(steps.get-pr.outputs.result).head.sha }} # or .head.ref for branch name
 
-      - name: "Checkout"
-        uses: actions/checkout@v2
-        with:
-          ref: ${{ steps.get_branch.outputs.branch }}
+      # - name: "Checkout"
+      #   uses: actions/checkout@v2
+      #   with:
+      #     ref: ${{ steps.get_branch.outputs.branch }}
 
       - name: Configure AWS credentials from Test account
         uses: aws-actions/configure-aws-credentials@v1
