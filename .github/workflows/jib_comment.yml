@@ -81,7 +81,10 @@ jobs:
 
       - name: jib with Gradle (app)
         id: jib
-        run: ./gradlew :app:jib
+        run: |
+          (./gradlew :app:jib | tee output) 3>&1 1>&2 2>&3 | tee error
+          echo "::set-output name=result::$(cat output)"
+          echo "::set-output name=error::$(cat error)"
         env:
           DOCKER_REPOSITORY_BASE_URL: ${{ secrets.DOCKER_REPOSITORY_BASE_URL }}
 
@@ -92,8 +95,8 @@ jobs:
 
       - uses: actions/github-script@0.9.0
         env:
-          JIB: ${{ steps.jib.outputs.stdout }}
-          JIB_ERROR: ${{ steps.jib.outputs.stderr }}
+          JIB: ${{ steps.jib.outputs.result }}
+          JIB_ERROR: ${{ steps.jib.outputs.error }}
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
