@@ -10,7 +10,7 @@ jobs:
     if: ${{ github.event.issue.pull_request != null && github.event.comment.body == '.build' }}
     steps:
       - name: Test
-        run:
+        run: |
           v=feature/55-terraform-cloudwatch-logs
           echo ${v:0:5}
           echo ${v:0:5} github_sha: ${GITHUB_SHA:0:7}
