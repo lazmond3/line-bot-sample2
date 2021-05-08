@@ -73,6 +73,7 @@ module "ecs" {
 
 # rds をやってみる
 module "rds" {
+  app_name                       = var.app_name
   source                         = "../../rds"
   vpc_id                         = module.vpc.vpc_id
   aws_lb_public_ids              = module.vpc.aws_subnet_public_ids
