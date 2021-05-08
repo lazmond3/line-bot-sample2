@@ -39,7 +39,7 @@
     "logConfiguration": {
       "logDriver": "awslogs",
       "options": {
-        "awslogs-group": "/ecs/line-bot-sample2/log-example",
+        "awslogs-group": "${log_group}",
         "awslogs-region": "ap-northeast-1",
         "awslogs-stream-prefix": "ecs"
       }
