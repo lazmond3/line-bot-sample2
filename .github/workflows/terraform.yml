@@ -39,7 +39,7 @@ jobs:
 
       - name: Terraform Init
         id: init
-        run: terraform init
+        run: terraform init -auto-approve
 
       - name: Terraform Plan
         id: plan
