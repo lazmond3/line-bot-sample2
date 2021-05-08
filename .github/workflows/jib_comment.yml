@@ -1,11 +1,11 @@
-name: "jib"
+name: "jib_comment"
 
 on:
   issue_comment:
 
 jobs:
   jib_comment:
-    name: "jib"
+    name: "jib_comment"
     runs-on: ubuntu-latest
     if: ${{ github.event.issue.pull_request != null && github.event.comment.body == '.build' }}
     steps:
@@ -58,6 +58,7 @@ jobs:
         run: ./gradlew :app:jib
         env:
           DOCKER_REPOSITORY_BASE_URL: ${{ secrets.DOCKER_REPOSITORY_BASE_URL }}
+
       - name: Cleanup Gradle Cache
         run: |
           rm -f ~/.gradle/caches/modules-2/modules-2.lock
@@ -100,3 +101,25 @@ jobs:
       - name: Jib Status
         if: steps.jib.outcome == 'failure'
         run: exit 1
+      - name: update tag version
+        run: sed -i -e "s/^container_tag\(  *\)= \"\(..*\)\".*$/container_tag\1= \"`cat VERSION.txt`-`git rev-parse --short=7 HEAD`\"/g" terraform/env/dev/dev.auto.tfvars
+
+      - name: GITHUB_SHA substring 0:7
+        id: hash_substring
+        run: |
+          echo ${GITHUB_SHA:0:7}
+      - name: git-auto commit
+        env:
+          INPUT_COMMIT_USER_NAME: GitHub Actions
+          INPUT_COMMIT_USER_EMAIL: actions@github.com
+        run: |
+          git add .
+          git \
+            -c user.name="$INPUT_COMMIT_USER_NAME" -c user.email="$INPUT_COMMIT_USER_EMAIL" \
+            commit \
+            -m "Update Tag Version(app) to ${GITHUB_SHA:0:7}" \
+            --author="${{ github.event.comment.actor.login }}"
+          git push origin HEAD
+      # - uses: stefanzweifel/git-auto-commit-action@v4
+      #   with:
+      #     commit_message: Update Tag Version(app) to ${{ github.sha }}
