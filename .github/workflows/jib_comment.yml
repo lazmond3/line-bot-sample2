@@ -32,10 +32,10 @@ jobs:
           echo "::set-output name=branch::$(echo $PR | jq -r '.head.ref')"
           echo "::set-output name=sha::$(echo $PR | jq -r '.head.sha')"
 
-      - name: "Checkout"
-        uses: actions/checkout@v2
-        with:
-          ref: ${{ steps.get_branch.outputs.branch }}
+      # - name: "Checkout"
+      #   uses: actions/checkout@v2
+      #   with:
+      #     ref: ${{ steps.get_branch.outputs.branch }}
 
       - name: Configure AWS credentials from Test account
         uses: aws-actions/configure-aws-credentials@v1
