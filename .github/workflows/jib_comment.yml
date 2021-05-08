@@ -103,7 +103,7 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
             const output = `#### .build の結果を表示する。
-            #### ./gradlew :app:jib 📖\`${{ steps.jib.outcome }}\`
+            #### ./gradlew :app:jib 📖\`${{ steps.jib_gradle.outcome }}\`
 
             <details><summary>Show Jib Result</summary>
 
