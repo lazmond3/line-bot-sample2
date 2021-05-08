@@ -54,17 +54,20 @@ module "alb" {
 }
 
 module "ecs" {
-  source                       = "../../ecs"
-  app_name                     = var.app_name
-  vpc_id                       = module.vpc.vpc_id
-  ecs_load_balancer_target_arn = module.alb.aws_lb_target_group_main_arn
-  ecs_subnets                  = module.vpc.aws_subnet_private_ids
-  template_file_path           = var.template_file_path
-  container_repository         = var.container_repository
-  container_tag                = var.container_tag
-  container_name               = var.container_name
-  container_port               = var.container_port
-  aws_ecr_repository_name      = module.ecr-app.aws_ecr_repository_name
+  source                                         = "../../ecs"
+  app_name                                       = var.app_name
+  vpc_id                                         = module.vpc.vpc_id
+  ecs_load_balancer_target_arn                   = module.alb.aws_lb_target_group_main_arn
+  ecs_subnets                                    = module.vpc.aws_subnet_private_ids
+  template_file_path                             = var.template_file_path
+  container_repository                           = var.container_repository
+  container_tag                                  = var.container_tag
+  container_name                                 = var.container_name
+  container_port                                 = var.container_port
+  aws_ecr_repository_name                        = module.ecr-app.aws_ecr_repository_name
+  aws_ssm_parameter_database_password_secret_arn = module.rds.aws_ssm_parameter_database_password_secret_arn
+  mysql_database                                 = var.mysql_database
+  mysql_user                                     = var.mysql_user
 }
 
 # rds をやってみる
@@ -78,4 +81,5 @@ module "rds" {
   mysql_database                 = var.mysql_database
   mysql_password                 = var.mysql_password
   mysql_user                     = var.mysql_user
+  ecs_task_execution_role_id     = module.ecs.ecs_task_execution_role_id
 }

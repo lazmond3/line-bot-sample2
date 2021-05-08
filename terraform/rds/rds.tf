@@ -66,7 +66,7 @@ resource "aws_rds_cluster" "this" {
   database_name = var.mysql_database
   #   master_username = aws_ssm_parameter.database_user.value
   master_username = var.mysql_user
-  master_password = aws_ssm_parameter.database_password.value
+  master_password = aws_ssm_parameter.database_password_secret.value
 
   # RDSインスタンス削除時のスナップショットの取得強制を無効化
   skip_final_snapshot = true
