@@ -16,3 +16,23 @@ resource "aws_security_group" "vpc_endpoint_rds" {
     cidr_blocks = [var.vpc_cidr]
   }
 }
+
+
+resource "aws_security_group" "vpc_endpoint_rds2" {
+  name   = "vpc_endpoint_sg_rds_2"
+  vpc_id = var.vpc_id
+
+  ingress {
+    from_port   = 3306
+    to_port     = 3306
+    protocol    = "tcp"
+    cidr_blocks = [var.vpc_cidr] # 本当は 0.0.0.0 で設定してみてもいいけど
+  }
+
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = [var.vpc_cidr]
+  }
+}
