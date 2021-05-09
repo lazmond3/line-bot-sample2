@@ -25,6 +25,8 @@ resource "aws_security_group" "ecs" {
 
   # これは必要. これがないとサービス動かなくなる
   # これ、  RDS からの返却を使うために、全部をオープンにする
+  # debug
+  # => 無駄だった, 結果変わらずgs
   ingress {
     from_port   = 0
     to_port     = 0
