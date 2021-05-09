@@ -28,7 +28,7 @@
         "value": "${db_address}"
       },
       {
-        "name": "DB_PORT",
+        "name": "PORT",
         "value":  "${db_port}"
       },
       {
