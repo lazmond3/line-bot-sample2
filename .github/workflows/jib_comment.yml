@@ -35,7 +35,7 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
-            const commitHash = `${{ fromJSON(steps.get-pr.outputs.result).head.sha }`};
+            const commitHash = `${{ fromJSON(steps.get-pr.outputs.result).head.sha }}`;
             const substrCommitHash = commitHash.substr(0,7);
 
             const output = `#### start :app:jib build.... ${substrCommitHash}
@@ -103,7 +103,7 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
-            const commitHash = `${{ fromJSON(steps.get-pr.outputs.result).head.sha }`};
+            const commitHash = `${{ fromJSON(steps.get-pr.outputs.result).head.sha }}`;
             const substrCommitHash = commitHash.substr(0,7);
             const output = `#### .build の結果を表示する。  ${substrCommitHash}
             #### ./gradlew :app:jib 📖\`${{ steps.jib_gradle.outcome }}\`
