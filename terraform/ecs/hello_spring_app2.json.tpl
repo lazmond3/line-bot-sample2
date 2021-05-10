@@ -1,7 +1,7 @@
 [
   {
     "name": "${container_name}",
-    "image": "554506578892.dkr.ecr.ap-northeast-1.amazonaws.com/line-bot-sample2-app2:0.0.1-0f974fc",
+    "image": "554506578892.dkr.ecr.ap-northeast-1.amazonaws.com/line-bot-sample2-app2:0.0.1-44327f5",
     "portMappings": [
       {
         "containerPort": 8080,
