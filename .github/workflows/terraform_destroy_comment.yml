@@ -1,0 +1,118 @@
+name: "terraform destroy pr comment"
+
+on:
+  issue_comment:
+
+defaults:
+  run:
+    working-directory: terraform/env/dev
+
+jobs:
+  terraform_destroy:
+    name: "terraform destroy pr comment"
+    runs-on: ubuntu-latest
+    if: ${{ github.event.issue.pull_request != null && github.event.comment.body == '.destroy' }}
+    steps:
+      - uses: actions/github-script@v3
+        id: get-pr
+        with:
+          script: |
+            const request = {
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: context.issue.number
+            }
+            core.info(`Getting PR #${request.pull_number} from ${request.owner}/${request.repo}`)
+            try {
+              const result = await github.pulls.get(request)
+              return result.data
+            } catch (err) {
+              core.setFailed(`Request failed with error ${err}`)
+            }
+      - uses: actions/checkout@v2
+        with:
+          repository: ${{ fromJSON(steps.get-pr.outputs.result).head.repo.full_name }}
+          ref: ${{ fromJSON(steps.get-pr.outputs.result).head.sha }} # or .head.ref for branch name
+          
+      - uses: actions/github-script@0.9.0
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const output = `#### start terraform destroy....
+            CI URL: ${process.env.GITHUB_SERVER_URL}/${process.env.GITHUB_REPOSITORY}/actions/runs/${process.env.GITHUB_RUN_ID}
+            `
+            github.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: output
+            })
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Configure AWS credentials from Test account
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ap-northeast-1
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v1
+        with:
+          # terraform_version: 0.13.0:
+          cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
+
+      - name: Terraform Format
+        id: fmt
+        run: terraform fmt -check -recursive
+        working-directory: ./terraform
+
+      - name: Terraform Init
+        id: init
+        run: terraform init
+
+      - name: Terraform Destroy
+        id: destroy
+        run: terraform destroy -no-color -auto-approve -var-file dev.auto.tfvars
+        env:
+          TF_VAR_mysql_password: ${{ secrets.TF_VAR_mysql_password }}
+        continue-on-error: true
+
+      - uses: actions/github-script@0.9.0
+        env:
+          DESTROY: ${{ steps.destroy.outputs.stdout }}
+          DESTROY_ERROR: ${{ steps.destroy.outputs.stderr }}
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const output = `#### .destroy の結果を表示する。
+            #### Terraform destroy 📖\`${{ steps.destroy.outcome }}\`
+
+            <details><summary>Show Destroy Result</summary>
+
+            \`\`\`terraform
+            ${process.env.DESTROY}
+            \`\`\`
+
+            </details>
+            
+            ${ process.env.DESTROY_ERROR &&
+              `<details><summary>Error</summary>
+
+              \`\`\`terraform
+              ${process.env.DESTROY_ERROR}
+              \`\`\`
+
+              </details>
+            `}`;
+
+            github.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: output
+            })
+      - name: Terraform Destroy Status
+        if: steps.destroy.outcome == 'failure'
+        run: exit 1
