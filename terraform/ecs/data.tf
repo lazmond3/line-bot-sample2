@@ -12,7 +12,6 @@ data "template_file" "container_definitions" {
     db_address        = var.db_address
     db_port           = var.db_port
     # log_group         = "/aws/ecs/${var.app_name}"
-    # log_group         = "/aws/ecs/${var.app_name}/python2"
-    log_group = aws_cloudwatch_log_group.python2.name
+    log_group = aws_cloudwatch_log_group.app2.name
   }
 }
