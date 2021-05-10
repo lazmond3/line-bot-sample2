@@ -57,8 +57,11 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
+            const commitHash = process.env.GITHUB_SHA;
+            const commitHashSubstr = commitHash.substr(0,7);
             const errorLine = `${process.env.PLAN_ERROR}`.trimLeft();
-            const output = `#### Terraform Format and Style 🖌\`${{ steps.fmt.outcome }}\`
+            const output = `#### terraform plan every: ${commitHashSubstr}
+            #### Terraform Format and Style 🖌\`${{ steps.fmt.outcome }}\`
             #### Terraform Initialization ⚙️\`${{ steps.init.outcome }}\`
             #### Terraform Plan 📖\`${{ steps.plan.outcome }}\`
 

@@ -12,37 +12,7 @@
 # variables だと `${}` 展開できないのでこちらを使用しました。
 # 他にやり方があれば教えてほしいです。
 locals {
-  name = "linebot-sample2-rds-mysql"
-}
-
-resource "aws_security_group" "this" {
-  name        = local.name
-  description = local.name
-
-  # vpc_id = aws_vpc.main.id
-  vpc_id = var.vpc_id
-
-  egress {
-    from_port   = 0
-    to_port     = 0
-    protocol    = "-1"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-
-  tags = {
-    Name = "${local.name}"
-  }
-}
-
-resource "aws_security_group_rule" "mysql" {
-  security_group_id = aws_security_group.this.id
-
-  type = "ingress"
-
-  from_port   = 3306
-  to_port     = 3306
-  protocol    = "tcp"
-  cidr_blocks = ["10.0.0.0/16"]
+  name = "${var.app_name}-rds-mysql"
 }
 
 resource "aws_db_subnet_group" "this" {
@@ -57,7 +27,7 @@ resource "aws_rds_cluster" "this" {
   cluster_identifier = local.name
 
   db_subnet_group_name   = aws_db_subnet_group.this.name
-  vpc_security_group_ids = ["${aws_security_group.this.id}"]
+  vpc_security_group_ids = ["${aws_security_group.rds.id}"]
 
   engine = "aurora-mysql"
   port   = "3306"

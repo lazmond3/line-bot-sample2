@@ -8,6 +8,6 @@ resource "aws_vpc_endpoint" "rds" {
   #Applicable for endpoints of type GatewayLoadBalancer and Interface.
 
   subnet_ids          = var.aws_lb_private_ids
-  security_group_ids  = [aws_security_group.vpc_endpoint_rds.id]
+  security_group_ids  = [aws_security_group.vpc_endpoint_rds.id, aws_security_group.vpc_endpoint_rds2.id]
   private_dns_enabled = true
 }
