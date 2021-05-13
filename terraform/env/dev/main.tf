@@ -26,7 +26,7 @@ provider "aws" {
 # }
 
 module "cert" {
-  source      = "../../route53"
+  source      = "../../cert"
   root_domain = var.root_domain
   app_domain  = var.app_domain
   # aws_lb_dns_name = module.alb.aws_lb_dns_name
