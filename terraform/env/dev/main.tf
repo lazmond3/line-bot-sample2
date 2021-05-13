@@ -25,17 +25,21 @@ provider "aws" {
 #   aws_route_table_ids_for_private = module.vpc.aws_route_table_ids_for_private
 # }
 
-module "route53" {
+module "cert" {
   source          = "../../route53"
   root_domain     = var.root_domain
   app_domain      = var.app_domain
-  aws_lb_dns_name = module.alb.aws_lb_dns_name
-  aws_lb_zone_id  = module.alb.aws_lb_zone_id
+  # aws_lb_dns_name = module.alb.aws_lb_dns_name
+  # aws_lb_zone_id  = module.alb.aws_lb_zone_id
 }
 
 module "vpc" {
   source   = "../../vpc"
   app_name = var.app_name
+  vpc_azs = var.vpc_azs
+  vpc_cidr = var.vpc_cidr
+  vpc_public_subnet_cidrs = var.vpc_public_subnet_cidrs
+  vpc_private_subnet_cidrs = var.vpc_private_subnet_cidrs
 }
 
 # module "alb" {
@@ -67,16 +71,16 @@ module "vpc" {
 # }
 
 # rds をやってみる
-module "rds" {
-  app_name                       = var.app_name
-  source                         = "../../rds"
-  vpc_id                         = module.vpc.vpc_id
-  aws_lb_public_ids              = module.vpc.aws_subnet_public_ids
-  aws_lb_private_ids             = module.vpc.aws_subnet_private_ids
-  vpc_cidr                       = module.vpc.vpc_cidr
-  debug_ec2_aws_route_table_id_0 = module.vpc.aws_route_table_ids_for_private[0]
-  mysql_database                 = var.mysql_database
-  mysql_password                 = var.mysql_password
-  mysql_user                     = var.mysql_user
-  ecs_task_execution_role_id     = module.ecs.ecs_task_execution_role_id
-}
+# module "rds" {
+#   app_name                       = var.app_name
+#   source                         = "../../rds"
+#   vpc_id                         = module.vpc.vpc_id
+#   aws_lb_public_ids              = module.vpc.aws_subnet_public_ids
+#   aws_lb_private_ids             = module.vpc.aws_subnet_private_ids
+#   vpc_cidr                       = module.vpc.vpc_cidr
+#   debug_ec2_aws_route_table_id_0 = module.vpc.aws_route_table_ids_for_private[0]
+#   mysql_database                 = var.mysql_database
+#   mysql_password                 = var.mysql_password
+#   mysql_user                     = var.mysql_user
+#   ecs_task_execution_role_id     = module.ecs.ecs_task_execution_role_id
+# }
