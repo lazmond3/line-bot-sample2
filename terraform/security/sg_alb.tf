@@ -4,7 +4,7 @@
 # とおもったら、 ecs-service と、 aws_lb に対して制限している
 
 resource "aws_security_group" "alb" {
-  name        = "${var.app_name}-alb"
+  name        = "${var.app_name}-alb-2"
   description = "alb"
 
   # セキュリティグループを配置するVPC
@@ -20,7 +20,7 @@ resource "aws_security_group" "alb" {
   }
 
   tags = {
-    Name = "${var.app_name}-alb"
+    Name = "${var.app_name}-alb-2"
   }
 
   # これは必要. これがないとサービス動かなくなる
