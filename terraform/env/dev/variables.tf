@@ -57,13 +57,15 @@ variable "vpc_cidr" {
 }
 variable "vpc_azs" {
   type    = list(string)
-  default = ["ap-northeast-1a", "ap-northeast-1c", "ap-northeast-1d"]
+  # default = ["ap-northeast-1a", "ap-northeast-1c", "ap-northeast-1d"]
 }
 
 variable "vpc_public_subnet_cidrs" {
-  default = ["10.0.0.0/24", "10.0.1.0/24", "10.0.2.0/24"]
+  type    = list(string)
+  # default = ["10.0.0.0/24", "10.0.1.0/24", "10.0.2.0/24"]
 }
 
 variable "vpc_private_subnet_cidrs" {
-  default = ["10.0.10.0/24", "10.0.11.0/24", "10.0.12.0/24"]
+  type    = list(string)
+  # default = ["10.0.10.0/24", "10.0.11.0/24", "10.0.12.0/24"]
 }
