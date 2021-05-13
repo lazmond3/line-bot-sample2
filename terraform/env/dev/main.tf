@@ -57,6 +57,14 @@ module "security" {
   app_name = var.app_name
 }
 
+module "route53" {
+  source                    = "../../route53"
+  app_domain                = var.app_domain
+  cert_route53_zone_main_id = module.cert.cert_route53_zone_main_id
+  alb_dns_name              = module.alb.alb_dns_name
+  alb_zone_id               = module.alb.alb_zone_id
+}
+
 # module "ecs" {
 #   source                                         = "../../ecs"
 #   app_name                                       = var.app_name
