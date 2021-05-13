@@ -10,8 +10,9 @@ vpc_public_subnet_cidrs  = ["10.0.0.0/24", "10.0.1.0/24", "10.0.2.0/24"]
 vpc_private_subnet_cidrs = ["10.0.10.0/24", "10.0.11.0/24", "10.0.12.0/24"]
 
 # ecr_name_sample_nginx   = "line-bot-sample-nginx"
-# ecr_name2               = "line-bot-sample2"
-# project_name_app        = "app"
+ecr_name         = "line-bot-sample2"
+ecr_name_base    = "line-bot-sample2"
+project_name_app = "app"
 # project_name_bot_server = "bot-server"
 # template_file_path      = "../../ecs/hello_spring.json.tpl" # main.tf からの相対パス
 # container_repository    = "554506578892.dkr.ecr.ap-northeast-1.amazonaws.com/line-bot-sample2-app"

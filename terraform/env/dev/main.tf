@@ -56,14 +56,22 @@ module "route53" {
   alb_zone_id               = module.alb.alb_zone_id
 }
 
-# module "ecr-app" {
-#   source                          = "../../ecr"
-#   ecr-name                        = "${var.ecr_name2}-${var.project_name_app}"
-#   vpc_id                          = module.vpc.vpc_id
-#   aws_subnet_private_ids          = module.vpc.aws_subnet_private_ids
-#   vpc_cidr                        = module.vpc.vpc_cidr
-#   aws_route_table_ids_for_private = module.vpc.aws_route_table_ids_for_private
-# }
+module "ecr" {
+  source   = "../../ecr"
+  ecr_name = "${var.ecr_name_base}-${var.project_name_app}"
+  # vpc_id                          = module.vpc.vpc_id
+  # aws_subnet_private_ids          = module.vpc.aws_subnet_private_ids
+  # vpc_cidr                        = module.vpc.vpc_cidr
+  # aws_route_table_ids_for_private = module.vpc.aws_route_table_ids_for_private
+}
+
+module "vpc_endpoint" {
+  source                                  = "../../vpc_endpoint"
+  vpc_id                                  = module.vpc.vpc_id
+  vpc_cidr                                = var.vpc_cidr
+  vpc_aws_subnet_private_ids              = module.vpc.vpc_aws_subnet_private_ids
+  vpc_aws_route_table_id_for_private_list = module.vpc.vpc_aws_route_table_id_for_private_list
+}
 
 # module "ecs" {
 #   source                                         = "../../ecs"

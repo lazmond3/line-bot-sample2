@@ -29,12 +29,16 @@ variable "vpc_private_subnet_cidrs" {
   # default = ["10.0.10.0/24", "10.0.11.0/24", "10.0.12.0/24"]
 }
 
+# ECR
 # variable "ecr_name_sample_nginx" {
 #   type = string
 # }
-# variable "ecr_name2" {
-#   type = string
-# }
+variable "ecr_name_base" {
+  type = string
+}
+variable "project_name_app" {
+  type = string
+}
 # variable "project_name_app" {
 #   type = string
 # }
