@@ -7,3 +7,14 @@ variable "app_name" {
 variable "vpc_id" {
   type = string
 }
+
+
+# cert
+variable "cert_arn" {
+  type = string
+}
+
+# セキュリティ
+variable "sg_alb_id" {
+  type = string
+}

@@ -1,9 +1,9 @@
 variable "vpc_id" {
-    type = string
+  type = string
 }
 
 variable "app_name" {
-    type = string
+  type = string
 }
 
 # sg_alb

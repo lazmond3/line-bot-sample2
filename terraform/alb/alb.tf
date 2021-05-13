@@ -32,6 +32,7 @@ resource "aws_lb" "this" {
   load_balancer_type = "application"
   name               = var.app_name
 
-  security_groups = [aws_security_group.alb.id]
-  subnets         = var.aws_lb_public_ids
+  security_groups = [var.sg_alb_id]
+  # security_groups = [aws_security_group.alb.id]
+  subnets = var.aws_lb_public_ids
 }

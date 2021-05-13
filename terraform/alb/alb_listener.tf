@@ -19,7 +19,7 @@ resource "aws_lb_listener" "https" {
   port     = "443"
   protocol = "HTTPS"
 
-  certificate_arn = var.cert-arn
+  certificate_arn = var.cert_arn
 
   load_balancer_arn = aws_lb.this.arn
 
