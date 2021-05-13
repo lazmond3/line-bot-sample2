@@ -5,12 +5,5 @@ variable "app_name" {
   type = string # line-bot-sample2
 }
 variable "vpc_id" {
-  type = string # aws_vpc.main.id
-}
-
-variable "cert-arn" {
-  type = string
-}
-variable "ecs-id" {
   type = string
 }
