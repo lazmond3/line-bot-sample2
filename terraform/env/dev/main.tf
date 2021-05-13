@@ -65,13 +65,13 @@ module "ecr" {
   # aws_route_table_ids_for_private = module.vpc.aws_route_table_ids_for_private
 }
 
-module "vpc_endpoint" {
-  source                                  = "../../vpc_endpoint"
-  vpc_id                                  = module.vpc.vpc_id
-  vpc_cidr                                = var.vpc_cidr
-  vpc_aws_subnet_private_ids              = module.vpc.vpc_aws_subnet_private_ids
-  vpc_aws_route_table_id_for_private_list = module.vpc.vpc_aws_route_table_id_for_private_list
-}
+# module "vpc_endpoint" {
+#   source                                  = "../../vpc_endpoint"
+#   vpc_id                                  = module.vpc.vpc_id
+#   vpc_cidr                                = var.vpc_cidr
+#   vpc_aws_subnet_private_ids              = module.vpc.vpc_aws_subnet_private_ids
+#   vpc_aws_route_table_id_for_private_list = module.vpc.vpc_aws_route_table_id_for_private_list
+# }
 
 # module "ecs" {
 #   source                                         = "../../ecs"
