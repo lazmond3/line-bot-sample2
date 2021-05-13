@@ -26,19 +26,19 @@ provider "aws" {
 # }
 
 module "cert" {
-  source          = "../../route53"
-  root_domain     = var.root_domain
-  app_domain      = var.app_domain
+  source      = "../../route53"
+  root_domain = var.root_domain
+  app_domain  = var.app_domain
   # aws_lb_dns_name = module.alb.aws_lb_dns_name
   # aws_lb_zone_id  = module.alb.aws_lb_zone_id
 }
 
 module "vpc" {
-  source   = "../../vpc"
-  app_name = var.app_name
-  vpc_azs = var.vpc_azs
-  vpc_cidr = var.vpc_cidr
-  vpc_public_subnet_cidrs = var.vpc_public_subnet_cidrs
+  source                   = "../../vpc"
+  app_name                 = var.app_name
+  vpc_azs                  = var.vpc_azs
+  vpc_cidr                 = var.vpc_cidr
+  vpc_public_subnet_cidrs  = var.vpc_public_subnet_cidrs
   vpc_private_subnet_cidrs = var.vpc_private_subnet_cidrs
 }
 

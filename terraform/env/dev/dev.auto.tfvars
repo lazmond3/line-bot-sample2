@@ -1,12 +1,12 @@
-app_name    = "line-bot-sample2"
+app_name = "line-bot-sample2"
 
 # route53, cert
 app_domain  = "line-bot-sample2.moikilo00.net"
 root_domain = "moikilo00.net"
 
 # vpc
-vpc_azs = ["ap-northeast-1a", "ap-northeast-1c", "ap-northeast-1d"]
-vpc_public_subnet_cidrs = ["10.0.0.0/24", "10.0.1.0/24", "10.0.2.0/24"]
+vpc_azs                  = ["ap-northeast-1a", "ap-northeast-1c", "ap-northeast-1d"]
+vpc_public_subnet_cidrs  = ["10.0.0.0/24", "10.0.1.0/24", "10.0.2.0/24"]
 vpc_private_subnet_cidrs = ["10.0.10.0/24", "10.0.11.0/24", "10.0.12.0/24"]
 
 # ecr_name_sample_nginx   = "line-bot-sample-nginx"
