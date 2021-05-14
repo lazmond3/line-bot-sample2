@@ -59,10 +59,6 @@ module "route53" {
 module "ecr" {
   source   = "../../ecr"
   ecr_name = "${var.ecr_name_base}-${var.project_name_app}"
-  # vpc_id                          = module.vpc.vpc_id
-  # aws_subnet_private_ids          = module.vpc.aws_subnet_private_ids
-  # vpc_cidr                        = module.vpc.vpc_cidr
-  # aws_route_table_ids_for_private = module.vpc.aws_route_table_ids_for_private
 }
 
 # module "vpc_endpoint" {
