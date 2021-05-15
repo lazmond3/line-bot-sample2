@@ -25,7 +25,7 @@ resource "aws_ecs_task_definition" "main" {
   network_mode = "awsvpc"
 
   # ECR にアクセスするための IAM Role
-  execution_role_arn = aws_iam_role.ecs_task_execution_role.arn
+  execution_role_arn = var.ecs_task_execution_role_arn
 
   # 起動するコンテナの定義
   # 「nginxを起動し、80ポートを開放する」設定を記述。
@@ -64,7 +64,7 @@ resource "aws_ecs_service" "main" {
     # タスクの起動を許可するサブネット
     subnets = var.ecs_subnets
     # タスクに紐付けるセキュリティグループ
-    security_groups = [aws_security_group.ecs.id]
+    security_groups = [var.aws_security_group_ecs_id]
   }
 
   # ECSタスクの起動後に紐付けるELBターゲットグループ

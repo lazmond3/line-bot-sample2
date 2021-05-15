@@ -9,22 +9,6 @@ jobs:
     runs-on: ubuntu-latest
     if: ${{ github.event.issue.pull_request != null && github.event.comment.body == '.build' }}
     steps:
-      - uses: actions/github-script@0.9.0
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          script: |
-            const output = `#### start :app:jib build....
-            CI URL: ${process.env.GITHUB_SERVER_URL}/${process.env.GITHUB_REPOSITORY}/actions/runs/${process.env.GITHUB_RUN_ID}
-            `
-            github.issues.createComment({
-              issue_number: context.issue.number,
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              body: output
-            })
-
-      # - name: Checkout
-      #   uses: actions/checkout@v2
       - uses: actions/github-script@v3
         id: get-pr
         with:
@@ -47,6 +31,23 @@ jobs:
           ref: ${{ fromJSON(steps.get-pr.outputs.result).head.ref }} # or .head.ref for branch name
           # ref: ${{ fromJSON(steps.get-pr.outputs.result).head.sha }} # or .head.ref for branch name
 
+      - uses: actions/github-script@0.9.0
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const commitHash = `${{ fromJSON(steps.get-pr.outputs.result).head.sha }}`;
+            const substrCommitHash = commitHash.substr(0,7);
+
+            const output = `#### start :app:jib build.... ${substrCommitHash}
+            CI URL: ${process.env.GITHUB_SERVER_URL}/${process.env.GITHUB_REPOSITORY}/actions/runs/${process.env.GITHUB_RUN_ID}
+            `;
+
+            github.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: output
+            })
       # - name: "Checkout"
       #   uses: actions/checkout@v2
       #   with:
@@ -102,7 +103,9 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
-            const output = `#### .build の結果を表示する。
+            const commitHash = `${{ fromJSON(steps.get-pr.outputs.result).head.sha }}`;
+            const substrCommitHash = commitHash.substr(0,7);
+            const output = `#### .build の結果を表示する。  ${substrCommitHash}
             #### ./gradlew :app:jib 📖\`${{ steps.jib_gradle.outcome }}\`
 
             <details><summary>Show Jib Result</summary>
@@ -112,16 +115,7 @@ jobs:
             \`\`\`
 
             </details>
-            
-            ${ process.env.JIB_ERROR &&
-              `<details><summary>Error</summary>
-
-              \`\`\`txt
-              ${process.env.JIB_ERROR}
-              \`\`\`
-
-              </details>
-            `}`;
+            `;
 
             github.issues.createComment({
               issue_number: context.issue.number,

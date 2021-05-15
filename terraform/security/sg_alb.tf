@@ -3,9 +3,9 @@
 # ECS に対してではなく VPC に対する セキュリティグループでは？
 # とおもったら、 ecs-service と、 aws_lb に対して制限している
 
-resource "aws_security_group" "ecs" {
-  name        = "${var.app_name}-ecs"
-  description = "handson ecs"
+resource "aws_security_group" "alb" {
+  name        = "${var.app_name}-alb-2"
+  description = "alb"
 
   # セキュリティグループを配置するVPC
   vpc_id = var.vpc_id
@@ -20,7 +20,7 @@ resource "aws_security_group" "ecs" {
   }
 
   tags = {
-    Name = "${var.app_name}-ecs"
+    Name = "${var.app_name}-alb-2"
   }
 
   # これは必要. これがないとサービス動かなくなる
@@ -32,11 +32,12 @@ resource "aws_security_group" "ecs" {
   }
 
   ingress {
-    from_port = 8080
-    to_port   = 8080
+    from_port = 80
+    to_port   = 80
     protocol  = "tcp"
 
     # 同一VPC内からのアクセスのみ許可
-    cidr_blocks = ["10.0.0.0/16"]
+    # cidr_blocks = ["10.0.0.0/16"]
+    cidr_blocks = ["0.0.0.0/0"]
   }
 }

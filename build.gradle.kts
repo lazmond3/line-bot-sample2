@@ -128,7 +128,8 @@ subprojects {
         val tagsVariable = mutableSetOf("latest", tag)
 
         from {
-            image = "adoptopenjdk/openjdk11:latest"
+            image = "docker.io/library/amazoncorretto:11"
+            // image = "adoptopenjdk/openjdk11:latest"
         }
         to {
             if (!jibTag.isNullOrBlank()) {

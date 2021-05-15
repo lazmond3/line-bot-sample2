@@ -1,16 +1,5 @@
-variable "ecr-name" {
-  type = string
-}
-variable "vpc_id" {
-  type = string
-}
-variable "aws_subnet_private_ids" {
-  type = list(string)
-}
-variable "vpc_cidr" {
+# ECR に対して
+variable "ecr_name" {
   type = string
 }
 
-variable "aws_route_table_ids_for_private" {
-  type = list(string)
-}
