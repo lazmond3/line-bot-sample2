@@ -46,35 +46,40 @@ variable "project_name_app" {
 #   type = string
 # }
 
-# variable "template_file_path" {
-#   type = string
-# }
 
-# variable "container_repository" {
-#   type = string
-# }
-# variable "container_name" {
-#   type = string
-# }
-# variable "container_port" {
-#   type = string
-# }
+variable "template_file_path" {
+  type = string
+}
 
-# variable "container_tag" {
-#   type = string
-# }
+variable "container_repository" {
+  type = string
+}
+variable "container_name" {
+  type = string
+}
+variable "container_port" {
+  type = string
+}
+
+variable "container_tag" {
+  type = string
+}
 
 # # secret
 # ## これは secret じゃない
-# variable "mysql_database" {
-#   type = string
-# }
-# variable "mysql_user" {
-#   type = string
-# }
+variable "task_mysql_database" {
+  type = string
+}
+variable "task_mysql_user" {
+  type = string
+}
 
-# # TF_VAR_mysql_password で渡す
-# variable "mysql_password" {
-#   type = string
-# }
+variable "task_db_port" {
+  type = string
+}
+
+# TF_VAR_mysql_password で渡す
+variable "mysql_password" {
+  type = string
+}
 

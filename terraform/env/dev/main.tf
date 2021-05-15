@@ -61,6 +61,7 @@ module "ecr" {
   ecr_name = "${var.ecr_name_base}-${var.project_name_app}"
 }
 
+# ここまで実装した
 # module "vpc_endpoint" {
 #   source                                  = "../../vpc_endpoint"
 #   vpc_id                                  = module.vpc.vpc_id
@@ -68,6 +69,49 @@ module "ecr" {
 #   vpc_aws_subnet_private_ids              = module.vpc.vpc_aws_subnet_private_ids
 #   vpc_aws_route_table_id_for_private_list = module.vpc.vpc_aws_route_table_id_for_private_list
 # }
+
+
+# ここまで実装した
+# -------------------------------------------
+module "cloudwatch" {
+  source   = "../../cloudwatch"
+  app_name = var.app_name
+}
+module "ecs" {
+  source                                         = "../../ecs"
+  app_name                                       = var.app_name
+  template_file_path                             = var.template_file_path
+  ecs_load_balancer_target_arn                   = module.alb.alb_target_group_main_arn
+  ecs_subnets                                    = module.vpc.vpc_aws_subnet_private_ids
+  container_name                                 = var.container_name
+  container_port                                 = var.container_port
+  container_repository                           = var.container_repository
+  container_tag                                  = var.container_tag
+  aws_ecr_repository_name                        = module.ecr.aws_ecr_repository_name
+  aws_ssm_parameter_database_password_secret_arn = module.ssm.aws_ssm_parameter_database_password_secret_arn
+  aws_cloudwatch_log_group_main_name             = module.cloudwatch.aws_cloudwatch_log_group_main_name
+  task_mysql_database                            = var.task_mysql_database
+  task_mysql_user                                = var.task_mysql_user
+  task_db_address                                = module.rds.db_address
+  task_db_port                                   = var.task_db_port
+  aws_security_group_ecs_id                      = module.security.aws_security_group_ecs_id
+  ecs_task_execution_role_arn                    = module.iam.ecs_task_execution_role_arn
+}
+
+module "iam" {
+  source                                         = "../../iam"
+  app_name                                       = var.app_name
+  vpc_id                                         = module.vpc.vpc_id
+  aws_cloudwatch_log_group_main_arn              = module.cloudwatch.aws_cloudwatch_log_group_main_name
+  aws_ssm_parameter_database_password_secret_arn = module.ssm.aws_ssm_parameter_database_password_secret_arn
+  ecs_task_execution_role_id                     = module.iam.aws_iam_role_ecs_task_execution_role_id
+}
+
+module "ssm" {
+  source         = "../../ssm"
+  mysql_password = var.mysql_password
+}
+
 
 # module "ecs" {
 #   source                                         = "../../ecs"
@@ -89,16 +133,16 @@ module "ecr" {
 # }
 
 # rds をやってみる
-# module "rds" {
-#   app_name                       = var.app_name
-#   source                         = "../../rds"
-#   vpc_id                         = module.vpc.vpc_id
-#   aws_lb_public_ids              = module.vpc.aws_subnet_public_ids
-#   aws_lb_private_ids             = module.vpc.aws_subnet_private_ids
-#   vpc_cidr                       = module.vpc.vpc_cidr
-#   debug_ec2_aws_route_table_id_0 = module.vpc.aws_route_table_ids_for_private[0]
-#   mysql_database                 = var.mysql_database
-#   mysql_password                 = var.mysql_password
-#   mysql_user                     = var.mysql_user
-#   ecs_task_execution_role_id     = module.ecs.ecs_task_execution_role_id
-# }
+module "rds" {
+  app_name           = var.app_name
+  source             = "../../rds"
+  vpc_id             = module.vpc.vpc_id
+  aws_lb_public_ids  = module.vpc.vpc_aws_subnet_public_ids
+  aws_lb_private_ids = module.vpc.vpc_aws_subnet_private_ids
+  vpc_cidr           = var.vpc_cidr
+  # debug_ec2_aws_route_table_id_0 = module.vpc.aws_route_table_ids_for_private[0]
+  mysql_password             = var.mysql_password
+  mysql_database             = var.task_mysql_database
+  mysql_user                 = var.task_mysql_user
+  ecs_task_execution_role_id = module.iam.aws_iam_role_ecs_task_execution_role_id
+}

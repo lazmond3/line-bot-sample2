@@ -26,26 +26,11 @@ resource "aws_security_group" "ecs" {
   # これは必要. これがないとサービス動かなくなる
   # これ、  RDS からの返却を使うために、全部をオープンにする
   # debug
-  # => 無駄だった, 結果変わらずgs
+  # => 無駄だった, 結果変わらず
   ingress {
     from_port   = 0
     to_port     = 0
     protocol    = "-1"
     cidr_blocks = ["0.0.0.0/0"]
   }
-  # ingress {
-  #   from_port   = 443
-  #   to_port     = 443
-  #   protocol    = "tcp"
-  #   cidr_blocks = ["0.0.0.0/0"]
-  # }
-
-  # ingress {
-  #   from_port = 8080
-  #   to_port   = 8080
-  #   protocol  = "tcp"
-
-  #   # 同一VPC内からのアクセスのみ許可
-  #   cidr_blocks = ["10.0.0.0/16"]
-  # }
 }
