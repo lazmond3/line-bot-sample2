@@ -1,15 +1,16 @@
 variable "app_domain" {
-  description = "これから取得したいドメイン名"
-  type        = string
-}
-variable "root_domain" {
-  description = "Route 53 で管理しているルートドメイン名 (wildcard)"
-  type        = string
+  type = string
 }
 
-variable "aws_lb_dns_name" {
-  type = string # aws_lb.this.dns_name
+# cert から (route53 の本体)
+variable "cert_route53_zone_main_id" {
+  type = string
 }
-variable "aws_lb_zone_id" {
-  type = string # aws_lb.this.zone_id
+
+# alb から
+variable "alb_dns_name" {
+  type = string
+}
+variable "alb_zone_id" {
+  type = string
 }

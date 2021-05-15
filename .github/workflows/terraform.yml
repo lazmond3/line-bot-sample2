@@ -73,16 +73,13 @@ jobs:
 
             </details>
 
-            ${
-              process.env.PLAN_ERROR &&
-                `<details><summary>Show Plan Error</summary>
+            <details><summary>Show Plan Error</summary>
 
-                \`\`\`terraform
-                ${errorLine}
-                \`\`\`
+            \`\`\`terraform
+            ${process.env.PLAN_ERROR}
+            \`\`\`
 
-                </details>
-            `}
+            </details>
 
 
             *Pusher: @${{ github.actor }}, Action: \`${{ github.event_name }}\`*`;

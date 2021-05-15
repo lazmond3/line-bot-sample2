@@ -12,7 +12,7 @@ resource "aws_iam_role_policy" "mysql_db_password_policy_secretsmanager" {
         ],
         "Effect": "Allow",
         "Resource": [
-          "${aws_ssm_parameter.database_password_secret.arn}"
+          "${var.aws_ssm_parameter_database_password_secret_arn}"
         ]
       }
     ]
